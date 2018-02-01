@@ -12,3 +12,9 @@ You can then use `make` to test and build the project:
 $ make all test
 $ open dist/index.html
 ```
+
+To initialize the data files:
+
+```shell
+$ make data
+```
