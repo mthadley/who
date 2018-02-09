@@ -206,18 +206,15 @@ update msg store model =
 
         GoToSelection ->
             let
-                selectedItem =
-                    getAt model.selectedIndex model.searchResults
+                ( name, cmd ) =
+                    case getAt model.selectedIndex model.searchResults of
+                        Just item ->
+                            ( item.name
+                            , newUrl <| Router.reverse <| ViewLegislator <| item.id
+                            )
 
-                name =
-                    selectedItem
-                        |> Maybe.map .name
-                        |> Maybe.withDefault model.query
-
-                cmd =
-                    selectedItem
-                        |> Maybe.map (newUrl << Router.reverse << ViewLegislator << .id)
-                        |> Maybe.withDefault Cmd.none
+                        Nothing ->
+                            ( model.query, Cmd.none )
             in
             ( { model | show = False, query = name }
             , Cmd.batch
