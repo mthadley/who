@@ -18,7 +18,9 @@ script:
   - elm-format --validate src tests
   - make all test
 
-before_deploy: make data
+before_deploy:
+  - sudo apt-get install python3
+  - make data
 
 deploy:
   github-token: $GITHUB_TOKEN
