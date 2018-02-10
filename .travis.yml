@@ -11,6 +11,11 @@ env:
     - ELM_VERSION=0.18.0
     - ELM_TEST_VERSION=^0.18.12
 
+addons:
+  apt:
+    packages:
+      - python3
+
 install:
   - npm install -g elm@$ELM_VERSION elm-test@$ELM_TEST_VERSION elm-format@exp
 
@@ -18,9 +23,7 @@ script:
   - elm-format --validate src tests
   - make all test
 
-before_deploy:
-  - sudo apt-get install python3
-  - make data
+before_deploy: make data
 
 deploy:
   github-token: $GITHUB_TOKEN
