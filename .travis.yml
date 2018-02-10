@@ -17,3 +17,15 @@ install:
 script:
   - elm-format --validate src tests
   - make all test
+
+before_deploy: make data
+
+deploy:
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: dist
+  project-name: who
+  provider: pages
+  skip-cleanup: true
+  on:
+    branch: master
