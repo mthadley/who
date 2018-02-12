@@ -21,7 +21,7 @@ script:
 before_deploy:
   - brew install python3 pipenv
   - pipenv install --dev
-  - make api-base all data
+  - URL_BASE="/who" make -e data api-base all
 
 deploy:
   github-token: $GITHUB_TOKEN

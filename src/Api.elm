@@ -9,7 +9,7 @@ import Types.Index as Index
 -- [[[cog
 -- import cog
 -- cog.outl("baseUrl : String")
--- cog.outl("baseUrl = \"/who/data/\"")
+-- cog.outl(f"baseUrl = \"{url_base}/data/\"")
 -- ]]]
 
 

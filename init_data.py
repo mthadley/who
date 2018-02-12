@@ -51,9 +51,10 @@ def read_json_url(url):
 
 
 class Downloader:
-    def __init__(self, skip_images=False):
+    def __init__(self, skip_images=False, url_base=""):
         self.legislators = None
         self.skip_images = skip_images
+        self.url_base = url_base
 
     def add_photo_urls(self):
         if self.skip_images:
@@ -79,7 +80,7 @@ class Downloader:
         for leg in self.legislators:
             id = leg_id(leg)
             if id in finished:
-                leg["photo_url"] = f"/data/photos/{id}.jpg"
+                leg["photo_url"] = f"{self.url_base}/data/photos/{id}.jpg"
                 downloaded_count += 1
             else:
                 leg["photo_url"] = None
@@ -127,7 +128,9 @@ if __name__ == "__main__":
     parser = optparse.OptionParser()
     parser.add_option("-s", "--skip-images",
                       action="store_true", default=False)
+    parser.add_option("-b", "--url-base", default="")
     options, args = parser.parse_args()
 
-    downloader = Downloader(skip_images=options.skip_images)
+    downloader = Downloader(skip_images=options.skip_images,
+                            url_base=options.url_base)
     downloader.run()
