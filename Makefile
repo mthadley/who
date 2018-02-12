@@ -17,6 +17,9 @@ $(ELM_MAIN): $(ELM_FILES)
 $(OUT)/index.html: src/index.html
 	@cp src/index.html $(OUT)
 
+api-base:
+	pipenv run python -m cogapp -r src/Api.elm
+
 test:
 	@elm-test
 
