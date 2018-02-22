@@ -5,6 +5,7 @@ import optparse
 import os
 import sys
 
+from operator import itemgetter
 from urllib.request import urlopen
 from pathlib import Path
 
@@ -99,7 +100,7 @@ class Downloader:
             "photo_url": leg.get("photo_url"),
             "state": leg["terms"][-1]["state"]
         } for leg in self.legislators]
-        index.sort(key=lambda leg: leg["last_name"])
+        index.sort(key=itemgetter("last_name"))
         with (DATA_DIR / "index").with_suffix(".json").open("w") as file:
             json.dump(index, file)
 
