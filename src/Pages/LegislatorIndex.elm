@@ -3,6 +3,7 @@ module Pages.LegislatorIndex exposing (Model, init, view)
 import Char
 import Css
 import Elements
+import Elements.LegislatorIndex as Elements
 import Html.Styled as Html exposing (..)
 import Html.Styled.Attributes as Attr
 import RemoteData exposing (WebData)

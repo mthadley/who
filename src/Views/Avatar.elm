@@ -1,7 +1,7 @@
 module Views.Avatar exposing (Size(..), view)
 
 import Css
-import Elements
+import Elements.Avatar as Elements
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attr
 import Theme exposing (getPartyColor)

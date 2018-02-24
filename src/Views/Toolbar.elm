@@ -3,6 +3,7 @@ port module Views.Toolbar exposing (Model, Msg, init, subscriptions, update, vie
 import Css
 import Dom
 import Elements
+import Elements.Toolbar as Elements
 import Html.Styled as Html exposing (..)
 import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events

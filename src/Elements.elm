@@ -4,7 +4,6 @@ import Css exposing (..)
 import Css.Media as Media exposing (only, screen, withMedia)
 import Html.Styled as Html exposing (..)
 import Theme exposing (theme)
-import Util.Css exposing (contentEmpty)
 
 
 type alias Element msg =
@@ -13,11 +12,6 @@ type alias Element msg =
 
 
 -- HELPERS
-
-
-arrowSize : Px
-arrowSize =
-    px 16
 
 
 boxShadowTransition : Style
@@ -64,11 +58,6 @@ invert =
         [ color theme.secondary
         , backgroundColor theme.dark
         ]
-
-
-toolbarAccentHeight : Px
-toolbarAccentHeight =
-    px 4
 
 
 onPhone : List Style -> Style
@@ -199,17 +188,6 @@ title =
         ]
 
 
-brand : Element msg
-brand =
-    styled Html.h1
-        [ boxShadowTransition
-        , hover [ makeShadow 2 ]
-        , invert
-        , makeShadow 1
-        , padding2 zero <| px 12
-        ]
-
-
 card : Element msg
 card =
     styled Html.div
@@ -226,173 +204,6 @@ main_ =
         [ centeredContent
         , marginTop <| px 44
         ]
-
-
-toolbarContent : Element msg
-toolbarContent =
-    styled Html.div
-        [ alignItems center
-        , centeredContent
-        , displayFlex
-        , height <| px 80
-        , justifyContent spaceBetween
-        , onPhone
-            [ flexDirection column
-            , marginBottom <| px 12
-            ]
-        ]
-
-
-toolbar : Element msg
-toolbar =
-    styled Html.nav
-        [ backgroundColor theme.accent
-        , borderBottom3 toolbarAccentHeight solid theme.demo
-        , left zero
-        , position relative
-        , right zero
-        , top zero
-        , after
-            [ contentEmpty
-            , backgroundImage <|
-                linearGradient2
-                    toRight
-                    (stop2 theme.repub <| pct 0)
-                    (stop2 theme.repub <| pct 50)
-                    [ stop2 theme.indie <| pct 50 ]
-            , position absolute
-            , height toolbarAccentHeight
-            , left zero
-            , width <| pct 66
-            , bottom <| toolbarAccentHeight |*| px -1
-            ]
-        ]
-
-
-searchContainer : Element msg
-searchContainer =
-    styled Html.div
-        [ position relative
-        , zIndex <| int 100
-        ]
-
-
-resultsList : Element msg
-resultsList =
-    styled ul [ padding2 (px 8) zero ]
-
-
-noResults : Element msg
-noResults =
-    styled Html.span
-        [ display block
-        , padding2 (px 12) <| px 8
-        , truncate
-        ]
-
-
-toolbarLinks : Element msg
-toolbarLinks =
-    styled ul
-        [ displayFlex
-        , alignItems center
-        ]
-
-
-toolbarLinkItem : Element msg
-toolbarLinkItem =
-    styled Html.li [ marginRight <| px 20 ]
-
-
-searchResults : Element msg
-searchResults =
-    styled card
-        [ makeShadow 2
-        , left <| px -2
-        , position absolute
-        , top <| px 52
-        , right <| px 0
-        , after
-            [ contentEmpty
-            , top <| px -28
-            , position absolute
-            , left <| px 8
-            , borderTop3 arrowSize solid transparent
-            , borderLeft3 arrowSize solid transparent
-            , borderRight3 arrowSize solid transparent
-            , borderBottom3 arrowSize solid <| theme.secondary
-            ]
-        ]
-
-
-searchLink : Element msg
-searchLink =
-    styled Html.a
-        [ displayFlex
-        , alignItems center
-        , color inherit
-        , width <| pct 100
-        , textDecoration none
-        ]
-
-
-avatar : Element msg
-avatar =
-    styled Html.div
-        [ backgroundSize cover
-        , backgroundColor <| theme.background
-        , borderRadius <| pct 50
-        , borderStyle solid
-        , displayFlex
-        , alignItems center
-        , justifyContent center
-        , flexShrink <| num 0
-        ]
-
-
-searchItem : Element msg
-searchItem =
-    styled Html.li
-        [ borderBottom3 (px 1) solid theme.light
-        , padding <| px 8
-        , lastChild
-            [ borderWidth zero
-            , marginBottom zero
-            ]
-        ]
-
-
-searchInput : Element msg
-searchInput =
-    styled Html.input
-        [ baseBorderRadius
-        , borderWidth zero
-        , boxShadowTransition
-        , fontSize <| px 16
-        , height <| px 30
-        , makeShadow 1
-        , minWidth <| px 240
-        , outline none
-        , padding2 zero <| px 16
-        , focus [ makeShadow 3 ]
-        , disabled [ opacity <| num 0.5 ]
-        ]
-
-
-letterList : Element msg
-letterList =
-    styled ul
-        [ displayFlex
-        , flexDirection column
-        , alignItems center
-        , flexWrap wrap
-        , onPhone [ flexDirection Css.row ]
-        ]
-
-
-letter : Element msg
-letter =
-    styled Html.li [ margin <| px 8 ]
 
 
 partyLabel : Element msg
