@@ -5,9 +5,10 @@ import optparse
 import os
 import sys
 
-from operator import itemgetter
-from urllib.request import urlopen
+from collections import namedtuple
+from operator import attrgetter
 from pathlib import Path
+from urllib.request import urlopen
 
 DATA_DIR = Path("dist/data")
 LEGISLATORS_DIR = DATA_DIR / "legislators"
@@ -19,20 +20,12 @@ LEGISLATORS_URL = BASE_URL + "congress-legislators/legislators-current.json"
 BASE_AVATAR_URL = "http://bioguide.congress.gov/bioguide/photo"
 
 
-def get_avatar_url(name, id):
-    return f"{BASE_AVATAR_URL}/{name[0].upper()}/{id}.jpg"
-
-
-def leg_id(leg):
-    return leg["id"]["bioguide"]
-
-
 def photo_worker(leg):
-    id = leg_id(leg)
+    id = leg.id
     try:
         path = (PHOTO_DIR / id).with_suffix(".jpg")
         if not path.exists():
-            response = urlopen(get_avatar_url(leg["name"]["last"], id))
+            response = urlopen(leg.get_avatar_url())
             with path.open("wb") as file:
                 file.write(response.read())
         return id, True
@@ -47,11 +40,26 @@ def init_dirs(dirs):
 
 
 def read_json_url(url):
-    response = urlopen(url).read()
-    return json.loads(response)
+    with urlopen(url) as response:
+        return json.loads(response.read())
+
+
+class Legislator(namedtuple('Legislator', [
+    "first_name",
+    "id",
+    "last_name",
+    "name",
+    "party",
+    "photo_url",
+    "state"
+        ])):
+
+    def get_avatar_url(self):
+        return f"{BASE_AVATAR_URL}/{self.last_name[0].upper()}/{self.id}.jpg"
 
 
 class Downloader:
+
     def __init__(self, skip_images=False, url_base=""):
         self.legislators = None
         self.skip_images = skip_images
@@ -66,54 +74,53 @@ class Downloader:
 
         pool = multiprocessing.Pool()
         finished = set()
-        for i, result in enumerate(
+        for i, (id, status) in enumerate(
             pool.imap_unordered(photo_worker, self.legislators), 1
         ):
-            id, status = result
-
             if status:
                 finished.add(id)
-
             sys.stdout.write(f"\r{i} of {total}")
             sys.stdout.flush()
 
-        downloaded_count = 0
-        for leg in self.legislators:
-            id = leg_id(leg)
-            if id in finished:
-                leg["photo_url"] = f"{self.url_base}/data/photos/{id}.jpg"
-                downloaded_count += 1
-            else:
-                leg["photo_url"] = None
+        def update_photo(leg):
+            if leg.id in finished:
+                return leg._replace(
+                        photo_url=f"{self.url_base}/data/photos/{leg.id}.jpg")
+            return leg
 
-        failed_count = len(self.legislators) - downloaded_count
+        self.legislators = [update_photo(leg) for leg in self.legislators]
+
+        downloaded_count = len([leg for leg in self.legislators
+                                if leg.id in finished])
+        failed_count = total - downloaded_count
         print(f"\n{downloaded_count} downloaded, {failed_count} failures")
 
     def create_index(self):
         print("Writing index file...")
-        index = [{
-            "first_name": leg["name"]["first"],
-            "id": leg_id(leg),
-            "last_name": leg["name"]["last"],
-            "name": leg["name"]["official_full"],
-            "party": leg["terms"][-1]["party"],
-            "photo_url": leg.get("photo_url"),
-            "state": leg["terms"][-1]["state"]
-        } for leg in self.legislators]
-        index.sort(key=itemgetter("last_name"))
         with (DATA_DIR / "index").with_suffix(".json").open("w") as file:
-            json.dump(index, file)
+            data = [leg._asdict() for leg in self.legislators]
+            json.dump(data, file)
 
     def create_individual(self):
         print(f"Writing {len(self.legislators)} data files...")
         for leg in self.legislators:
-            filename = (LEGISLATORS_DIR / leg_id(leg)).with_suffix(".json")
+            filename = (LEGISLATORS_DIR / leg.id).with_suffix(".json")
             with filename.open("w") as file:
                 json.dump(leg, file)
 
     def create_data_files(self):
         print("Fetching data...")
-        self.legislators = read_json_url(LEGISLATORS_URL)
+
+        self.legislators = [Legislator(
+            first_name=leg["name"]["first"],
+            id=leg["id"]["bioguide"],
+            last_name=leg["name"]["last"],
+            name=leg["name"]["official_full"],
+            party=leg["terms"][-1]["party"],
+            photo_url=None,
+            state=leg["terms"][-1]["state"]
+        ) for leg in read_json_url(LEGISLATORS_URL)]
+        self.legislators.sort(key=attrgetter("last_name"))
 
         self.add_photo_urls()
         self.create_index()
