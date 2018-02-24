@@ -21899,8 +21899,6 @@ var _mthadley$who$Theme$getPartyColor = function (party) {
 	}
 };
 
-var _mthadley$who$Util_Css$contentEmpty = A2(_rtfeldman$elm_css$Css$property, 'content', '\'\'');
-
 var _mthadley$who$Elements$cardName = A2(
 	_rtfeldman$elm_css$Html_Styled$styled,
 	_rtfeldman$elm_css$Html_Styled$div,
@@ -21925,130 +21923,6 @@ var _mthadley$who$Elements$partyLabel = A2(
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Css$fontSize(
 				_rtfeldman$elm_css$Css$em(0.7)),
-			_1: {ctor: '[]'}
-		}
-	});
-var _mthadley$who$Elements$letter = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$li,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$margin(
-			_rtfeldman$elm_css$Css$px(8)),
-		_1: {ctor: '[]'}
-	});
-var _mthadley$who$Elements$searchItem = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$li,
-	{
-		ctor: '::',
-		_0: A3(
-			_rtfeldman$elm_css$Css$borderBottom3,
-			_rtfeldman$elm_css$Css$px(1),
-			_rtfeldman$elm_css$Css$solid,
-			_mthadley$who$Theme$theme.light),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$padding(
-				_rtfeldman$elm_css$Css$px(8)),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$lastChild(
-					{
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$borderWidth(_rtfeldman$elm_css$Css$zero),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$marginBottom(_rtfeldman$elm_css$Css$zero),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _mthadley$who$Elements$avatar = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$div,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$backgroundSize(_rtfeldman$elm_css$Css$cover),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$backgroundColor(_mthadley$who$Theme$theme.background),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$borderRadius(
-					_rtfeldman$elm_css$Css$pct(50)),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$borderStyle(_rtfeldman$elm_css$Css$solid),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$displayFlex,
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$justifyContent(_rtfeldman$elm_css$Css$center),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$flexShrink(
-										_rtfeldman$elm_css$Css$num(0)),
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _mthadley$who$Elements$searchLink = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$a,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$displayFlex,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$color(_rtfeldman$elm_css$Css$inherit),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$width(
-						_rtfeldman$elm_css$Css$pct(100)),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$none),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		}
-	});
-var _mthadley$who$Elements$toolbarLinkItem = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$li,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$marginRight(
-			_rtfeldman$elm_css$Css$px(20)),
-		_1: {ctor: '[]'}
-	});
-var _mthadley$who$Elements$searchContainer = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$div,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$zIndex(
-				_rtfeldman$elm_css$Css$int(100)),
 			_1: {ctor: '[]'}
 		}
 	});
@@ -22129,29 +22003,6 @@ var _mthadley$who$Elements$ul = A2(
 				_0: _rtfeldman$elm_css$Css$padding(_rtfeldman$elm_css$Css$zero),
 				_1: {ctor: '[]'}
 			}
-		}
-	});
-var _mthadley$who$Elements$resultsList = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_mthadley$who$Elements$ul,
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Css$padding2,
-			_rtfeldman$elm_css$Css$px(8),
-			_rtfeldman$elm_css$Css$zero),
-		_1: {ctor: '[]'}
-	});
-var _mthadley$who$Elements$toolbarLinks = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_mthadley$who$Elements$ul,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$displayFlex,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
-			_1: {ctor: '[]'}
 		}
 	});
 var _mthadley$who$Elements$currentLink = A2(
@@ -22263,121 +22114,6 @@ var _mthadley$who$Elements$cardList = A2(
 			}
 		}
 	});
-var _mthadley$who$Elements$letterList = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_mthadley$who$Elements$ul,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$displayFlex,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$flexDirection(_rtfeldman$elm_css$Css$column),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$flexWrap(_rtfeldman$elm_css$Css$wrap),
-					_1: {
-						ctor: '::',
-						_0: _mthadley$who$Elements$onPhone(
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$flexDirection(_rtfeldman$elm_css$Css$row),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		}
-	});
-var _mthadley$who$Elements$toolbarAccentHeight = _rtfeldman$elm_css$Css$px(4);
-var _mthadley$who$Elements$toolbar = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$nav,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$backgroundColor(_mthadley$who$Theme$theme.accent),
-		_1: {
-			ctor: '::',
-			_0: A3(_rtfeldman$elm_css$Css$borderBottom3, _mthadley$who$Elements$toolbarAccentHeight, _rtfeldman$elm_css$Css$solid, _mthadley$who$Theme$theme.demo),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$after(
-									{
-										ctor: '::',
-										_0: _mthadley$who$Util_Css$contentEmpty,
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$backgroundImage(
-												A4(
-													_rtfeldman$elm_css$Css$linearGradient2,
-													_rtfeldman$elm_css$Css$toRight,
-													A2(
-														_rtfeldman$elm_css$Css$stop2,
-														_mthadley$who$Theme$theme.repub,
-														_rtfeldman$elm_css$Css$pct(0)),
-													A2(
-														_rtfeldman$elm_css$Css$stop2,
-														_mthadley$who$Theme$theme.repub,
-														_rtfeldman$elm_css$Css$pct(50)),
-													{
-														ctor: '::',
-														_0: A2(
-															_rtfeldman$elm_css$Css$stop2,
-															_mthadley$who$Theme$theme.indie,
-															_rtfeldman$elm_css$Css$pct(50)),
-														_1: {ctor: '[]'}
-													})),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-												_1: {
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$height(_mthadley$who$Elements$toolbarAccentHeight),
-													_1: {
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
-														_1: {
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Css$width(
-																_rtfeldman$elm_css$Css$pct(66)),
-															_1: {
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Css$bottom(
-																	A2(
-																		_rtfeldman$elm_css$Css_ops['|*|'],
-																		_mthadley$who$Elements$toolbarAccentHeight,
-																		_rtfeldman$elm_css$Css$px(-1))),
-																_1: {ctor: '[]'}
-															}
-														}
-													}
-												}
-											}
-										}
-									}),
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
 var _mthadley$who$Elements$invert = _rtfeldman$elm_css$Css$batch(
 	{
 		ctor: '::',
@@ -22419,25 +22155,6 @@ var _mthadley$who$Elements$truncate = _rtfeldman$elm_css$Css$batch(
 						_rtfeldman$elm_css$Css$pct(100)),
 					_1: {ctor: '[]'}
 				}
-			}
-		}
-	});
-var _mthadley$who$Elements$noResults = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$span,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_rtfeldman$elm_css$Css$padding2,
-				_rtfeldman$elm_css$Css$px(12),
-				_rtfeldman$elm_css$Css$px(8)),
-			_1: {
-				ctor: '::',
-				_0: _mthadley$who$Elements$truncate,
-				_1: {ctor: '[]'}
 			}
 		}
 	});
@@ -22483,45 +22200,6 @@ var _mthadley$who$Elements$main_ = A2(
 			_0: _rtfeldman$elm_css$Css$marginTop(
 				_rtfeldman$elm_css$Css$px(44)),
 			_1: {ctor: '[]'}
-		}
-	});
-var _mthadley$who$Elements$toolbarContent = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$div,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
-		_1: {
-			ctor: '::',
-			_0: _mthadley$who$Elements$centeredContent,
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$displayFlex,
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$height(
-						_rtfeldman$elm_css$Css$px(80)),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$justifyContent(_rtfeldman$elm_css$Css$spaceBetween),
-						_1: {
-							ctor: '::',
-							_0: _mthadley$who$Elements$onPhone(
-								{
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$flexDirection(_rtfeldman$elm_css$Css$column),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$marginBottom(
-											_rtfeldman$elm_css$Css$px(12)),
-										_1: {ctor: '[]'}
-									}
-								}),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
 		}
 	});
 var _mthadley$who$Elements$baseBorderRadius = _rtfeldman$elm_css$Css$borderRadius(
@@ -22627,170 +22305,6 @@ var _mthadley$who$Elements$indexCard = A2(
 									}
 								}
 							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _mthadley$who$Elements$brand = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$h1,
-	{
-		ctor: '::',
-		_0: _mthadley$who$Elements$boxShadowTransition,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$hover(
-				{
-					ctor: '::',
-					_0: _mthadley$who$Elements$makeShadow(2),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: _mthadley$who$Elements$invert,
-				_1: {
-					ctor: '::',
-					_0: _mthadley$who$Elements$makeShadow(1),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Css$padding2,
-							_rtfeldman$elm_css$Css$zero,
-							_rtfeldman$elm_css$Css$px(12)),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		}
-	});
-var _mthadley$who$Elements$searchInput = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_rtfeldman$elm_css$Html_Styled$input,
-	{
-		ctor: '::',
-		_0: _mthadley$who$Elements$baseBorderRadius,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$borderWidth(_rtfeldman$elm_css$Css$zero),
-			_1: {
-				ctor: '::',
-				_0: _mthadley$who$Elements$boxShadowTransition,
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$fontSize(
-						_rtfeldman$elm_css$Css$px(16)),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$height(
-							_rtfeldman$elm_css$Css$px(30)),
-						_1: {
-							ctor: '::',
-							_0: _mthadley$who$Elements$makeShadow(1),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$minWidth(
-									_rtfeldman$elm_css$Css$px(240)),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$outline(_rtfeldman$elm_css$Css$none),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_rtfeldman$elm_css$Css$padding2,
-											_rtfeldman$elm_css$Css$zero,
-											_rtfeldman$elm_css$Css$px(16)),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$focus(
-												{
-													ctor: '::',
-													_0: _mthadley$who$Elements$makeShadow(3),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$disabled(
-													{
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Css$opacity(
-															_rtfeldman$elm_css$Css$num(0.5)),
-														_1: {ctor: '[]'}
-													}),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _mthadley$who$Elements$arrowSize = _rtfeldman$elm_css$Css$px(16);
-var _mthadley$who$Elements$searchResults = A2(
-	_rtfeldman$elm_css$Html_Styled$styled,
-	_mthadley$who$Elements$card,
-	{
-		ctor: '::',
-		_0: _mthadley$who$Elements$makeShadow(2),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$left(
-				_rtfeldman$elm_css$Css$px(-2)),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$top(
-						_rtfeldman$elm_css$Css$px(52)),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$right(
-							_rtfeldman$elm_css$Css$px(0)),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$after(
-								{
-									ctor: '::',
-									_0: _mthadley$who$Util_Css$contentEmpty,
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$top(
-											_rtfeldman$elm_css$Css$px(-28)),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$left(
-													_rtfeldman$elm_css$Css$px(8)),
-												_1: {
-													ctor: '::',
-													_0: A3(_rtfeldman$elm_css$Css$borderTop3, _mthadley$who$Elements$arrowSize, _rtfeldman$elm_css$Css$solid, _rtfeldman$elm_css$Css$transparent),
-													_1: {
-														ctor: '::',
-														_0: A3(_rtfeldman$elm_css$Css$borderLeft3, _mthadley$who$Elements$arrowSize, _rtfeldman$elm_css$Css$solid, _rtfeldman$elm_css$Css$transparent),
-														_1: {
-															ctor: '::',
-															_0: A3(_rtfeldman$elm_css$Css$borderRight3, _mthadley$who$Elements$arrowSize, _rtfeldman$elm_css$Css$solid, _rtfeldman$elm_css$Css$transparent),
-															_1: {
-																ctor: '::',
-																_0: A3(_rtfeldman$elm_css$Css$borderBottom3, _mthadley$who$Elements$arrowSize, _rtfeldman$elm_css$Css$solid, _mthadley$who$Theme$theme.secondary),
-																_1: {ctor: '[]'}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}),
-							_1: {ctor: '[]'}
 						}
 					}
 				}
@@ -23477,6 +22991,84 @@ var _mthadley$who$Pages_Legislator$init = function (id) {
 	};
 };
 
+var _mthadley$who$Elements_LegislatorIndex$letterList = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_mthadley$who$Elements$ul,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$displayFlex,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$flexDirection(_rtfeldman$elm_css$Css$column),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$flexWrap(_rtfeldman$elm_css$Css$wrap),
+					_1: {
+						ctor: '::',
+						_0: _mthadley$who$Elements$onPhone(
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$flexDirection(_rtfeldman$elm_css$Css$row),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _mthadley$who$Elements_LegislatorIndex$letter = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$li,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$margin(
+			_rtfeldman$elm_css$Css$px(8)),
+		_1: {ctor: '[]'}
+	});
+
+var _mthadley$who$Elements_Avatar$avatar = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$div,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$backgroundSize(_rtfeldman$elm_css$Css$cover),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$backgroundColor(_mthadley$who$Theme$theme.background),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$borderRadius(
+					_rtfeldman$elm_css$Css$pct(50)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$borderStyle(_rtfeldman$elm_css$Css$solid),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$displayFlex,
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$justifyContent(_rtfeldman$elm_css$Css$center),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$flexShrink(
+										_rtfeldman$elm_css$Css$num(0)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+
 var _mthadley$who$Util_Html$empty = _rtfeldman$elm_css$Html_Styled$text('');
 
 var _mthadley$who$Util_Maybe$isNone = function (maybe) {
@@ -23523,7 +23115,7 @@ var _mthadley$who$Views_Avatar$view = F3(
 		var _p4 = _p2.photoUrl;
 		var partyColor = _mthadley$who$Theme$getPartyColor(_p2.party);
 		return A2(
-			_mthadley$who$Elements$avatar,
+			_mthadley$who$Elements_Avatar$avatar,
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				{
@@ -23731,7 +23323,7 @@ var _mthadley$who$Pages_LegislatorIndex$viewLetter = F3(
 			_elm_lang$core$String$fromChar(
 				_elm_lang$core$Char$toUpper($char)));
 		return A2(
-			_mthadley$who$Elements$letter,
+			_mthadley$who$Elements_LegislatorIndex$letter,
 			{ctor: '[]'},
 			{
 				ctor: '::',
@@ -23893,7 +23485,7 @@ var _mthadley$who$Pages_LegislatorIndex$viewLetters = F2(
 				$char);
 		};
 		return A2(
-			_mthadley$who$Elements$letterList,
+			_mthadley$who$Elements_LegislatorIndex$letterList,
 			{ctor: '[]'},
 			A2(_elm_lang$core$List$map, viewHelper, _mthadley$who$Pages_LegislatorIndex$letters));
 	});
@@ -24371,6 +23963,417 @@ var _mthadley$who$Styles$styles = _rtfeldman$elm_css$Css_Foreign$global(
 		}
 	});
 
+var _mthadley$who$Util_Css$contentEmpty = A2(_rtfeldman$elm_css$Css$property, 'content', '\'\'');
+
+var _mthadley$who$Elements_Toolbar$toolbarLinkItem = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$li,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$marginRight(
+			_rtfeldman$elm_css$Css$px(20)),
+		_1: {ctor: '[]'}
+	});
+var _mthadley$who$Elements_Toolbar$toolbarLinks = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_mthadley$who$Elements$ul,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$displayFlex,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+			_1: {ctor: '[]'}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$toolbarContent = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$div,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+		_1: {
+			ctor: '::',
+			_0: _mthadley$who$Elements$centeredContent,
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$displayFlex,
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$height(
+						_rtfeldman$elm_css$Css$px(80)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$justifyContent(_rtfeldman$elm_css$Css$spaceBetween),
+						_1: {
+							ctor: '::',
+							_0: _mthadley$who$Elements$onPhone(
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$flexDirection(_rtfeldman$elm_css$Css$column),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$marginBottom(
+											_rtfeldman$elm_css$Css$px(12)),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$searchLink = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$a,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$displayFlex,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$color(_rtfeldman$elm_css$Css$inherit),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$width(
+						_rtfeldman$elm_css$Css$pct(100)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$none),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$searchItem = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$li,
+	{
+		ctor: '::',
+		_0: A3(
+			_rtfeldman$elm_css$Css$borderBottom3,
+			_rtfeldman$elm_css$Css$px(1),
+			_rtfeldman$elm_css$Css$solid,
+			_mthadley$who$Theme$theme.light),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$padding(
+				_rtfeldman$elm_css$Css$px(8)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$lastChild(
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$borderWidth(_rtfeldman$elm_css$Css$zero),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$marginBottom(_rtfeldman$elm_css$Css$zero),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$searchInput = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$input,
+	{
+		ctor: '::',
+		_0: _mthadley$who$Elements$baseBorderRadius,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$borderWidth(_rtfeldman$elm_css$Css$zero),
+			_1: {
+				ctor: '::',
+				_0: _mthadley$who$Elements$boxShadowTransition,
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$fontSize(
+						_rtfeldman$elm_css$Css$px(16)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$height(
+							_rtfeldman$elm_css$Css$px(30)),
+						_1: {
+							ctor: '::',
+							_0: _mthadley$who$Elements$makeShadow(1),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$minWidth(
+									_rtfeldman$elm_css$Css$px(240)),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$outline(_rtfeldman$elm_css$Css$none),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Css$padding2,
+											_rtfeldman$elm_css$Css$zero,
+											_rtfeldman$elm_css$Css$px(16)),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$focus(
+												{
+													ctor: '::',
+													_0: _mthadley$who$Elements$makeShadow(3),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$disabled(
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$opacity(
+															_rtfeldman$elm_css$Css$num(0.5)),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$searchContainer = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$div,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$zIndex(
+				_rtfeldman$elm_css$Css$int(100)),
+			_1: {ctor: '[]'}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$resultsList = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_mthadley$who$Elements$ul,
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Css$padding2,
+			_rtfeldman$elm_css$Css$px(8),
+			_rtfeldman$elm_css$Css$zero),
+		_1: {ctor: '[]'}
+	});
+var _mthadley$who$Elements_Toolbar$noResults = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$span,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_rtfeldman$elm_css$Css$padding2,
+				_rtfeldman$elm_css$Css$px(12),
+				_rtfeldman$elm_css$Css$px(8)),
+			_1: {
+				ctor: '::',
+				_0: _mthadley$who$Elements$truncate,
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$brand = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$h1,
+	{
+		ctor: '::',
+		_0: _mthadley$who$Elements$boxShadowTransition,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$hover(
+				{
+					ctor: '::',
+					_0: _mthadley$who$Elements$makeShadow(2),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _mthadley$who$Elements$invert,
+				_1: {
+					ctor: '::',
+					_0: _mthadley$who$Elements$makeShadow(1),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Css$padding2,
+							_rtfeldman$elm_css$Css$zero,
+							_rtfeldman$elm_css$Css$px(12)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$toolbarAccentHeight = _rtfeldman$elm_css$Css$px(4);
+var _mthadley$who$Elements_Toolbar$toolbar = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_rtfeldman$elm_css$Html_Styled$nav,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$backgroundColor(_mthadley$who$Theme$theme.accent),
+		_1: {
+			ctor: '::',
+			_0: A3(_rtfeldman$elm_css$Css$borderBottom3, _mthadley$who$Elements_Toolbar$toolbarAccentHeight, _rtfeldman$elm_css$Css$solid, _mthadley$who$Theme$theme.demo),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$after(
+									{
+										ctor: '::',
+										_0: _mthadley$who$Util_Css$contentEmpty,
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$backgroundImage(
+												A4(
+													_rtfeldman$elm_css$Css$linearGradient2,
+													_rtfeldman$elm_css$Css$toRight,
+													A2(
+														_rtfeldman$elm_css$Css$stop2,
+														_mthadley$who$Theme$theme.repub,
+														_rtfeldman$elm_css$Css$pct(0)),
+													A2(
+														_rtfeldman$elm_css$Css$stop2,
+														_mthadley$who$Theme$theme.repub,
+														_rtfeldman$elm_css$Css$pct(50)),
+													{
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Css$stop2,
+															_mthadley$who$Theme$theme.indie,
+															_rtfeldman$elm_css$Css$pct(50)),
+														_1: {ctor: '[]'}
+													})),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$height(_mthadley$who$Elements_Toolbar$toolbarAccentHeight),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$width(
+																_rtfeldman$elm_css$Css$pct(66)),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$bottom(
+																	A2(
+																		_rtfeldman$elm_css$Css_ops['|*|'],
+																		_mthadley$who$Elements_Toolbar$toolbarAccentHeight,
+																		_rtfeldman$elm_css$Css$px(-1))),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _mthadley$who$Elements_Toolbar$arrowSize = _rtfeldman$elm_css$Css$px(16);
+var _mthadley$who$Elements_Toolbar$searchResults = A2(
+	_rtfeldman$elm_css$Html_Styled$styled,
+	_mthadley$who$Elements$card,
+	{
+		ctor: '::',
+		_0: _mthadley$who$Elements$makeShadow(2),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$left(
+				_rtfeldman$elm_css$Css$px(-2)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$top(
+						_rtfeldman$elm_css$Css$px(52)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$right(
+							_rtfeldman$elm_css$Css$px(0)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$after(
+								{
+									ctor: '::',
+									_0: _mthadley$who$Util_Css$contentEmpty,
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$top(
+											_rtfeldman$elm_css$Css$px(-28)),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$left(
+													_rtfeldman$elm_css$Css$px(8)),
+												_1: {
+													ctor: '::',
+													_0: A3(_rtfeldman$elm_css$Css$borderTop3, _mthadley$who$Elements_Toolbar$arrowSize, _rtfeldman$elm_css$Css$solid, _rtfeldman$elm_css$Css$transparent),
+													_1: {
+														ctor: '::',
+														_0: A3(_rtfeldman$elm_css$Css$borderLeft3, _mthadley$who$Elements_Toolbar$arrowSize, _rtfeldman$elm_css$Css$solid, _rtfeldman$elm_css$Css$transparent),
+														_1: {
+															ctor: '::',
+															_0: A3(_rtfeldman$elm_css$Css$borderRight3, _mthadley$who$Elements_Toolbar$arrowSize, _rtfeldman$elm_css$Css$solid, _rtfeldman$elm_css$Css$transparent),
+															_1: {
+																ctor: '::',
+																_0: A3(_rtfeldman$elm_css$Css$borderBottom3, _mthadley$who$Elements_Toolbar$arrowSize, _rtfeldman$elm_css$Css$solid, _mthadley$who$Theme$theme.secondary),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	});
+
 var _rtfeldman$elm_css$Html_Styled_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
 var _rtfeldman$elm_css$Html_Styled_Events$targetChecked = A2(
 	_elm_lang$core$Json_Decode$at,
@@ -24587,7 +24590,7 @@ var _mthadley$who$Views_Toolbar$viewPartyLabel = function (party) {
 var _mthadley$who$Views_Toolbar$viewLink = F3(
 	function (currentRoute, route, label) {
 		return A2(
-			_mthadley$who$Elements$toolbarLinkItem,
+			_mthadley$who$Elements_Toolbar$toolbarLinkItem,
 			{ctor: '[]'},
 			{
 				ctor: '::',
@@ -24615,14 +24618,14 @@ var _mthadley$who$Views_Toolbar$links = {
 };
 var _mthadley$who$Views_Toolbar$viewLinks = function (currentRoute) {
 	return A2(
-		_mthadley$who$Elements$toolbarLinks,
+		_mthadley$who$Elements_Toolbar$toolbarLinks,
 		{ctor: '[]'},
 		A2(
 			_elm_lang$core$Basics_ops['++'],
 			{
 				ctor: '::',
 				_0: A2(
-					_mthadley$who$Elements$toolbarLinkItem,
+					_mthadley$who$Elements_Toolbar$toolbarLinkItem,
 					{ctor: '[]'},
 					{
 						ctor: '::',
@@ -24636,7 +24639,7 @@ var _mthadley$who$Views_Toolbar$viewLinks = function (currentRoute) {
 							{
 								ctor: '::',
 								_0: A2(
-									_mthadley$who$Elements$brand,
+									_mthadley$who$Elements_Toolbar$brand,
 									{ctor: '[]'},
 									{
 										ctor: '::',
@@ -24684,7 +24687,7 @@ var _mthadley$who$Views_Toolbar$viewItem = F4(
 		var activeColor = _p4._0;
 		var activeBg = _p4._1;
 		return A2(
-			_mthadley$who$Elements$searchItem,
+			_mthadley$who$Elements_Toolbar$searchItem,
 			{
 				ctor: '::',
 				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
@@ -24702,7 +24705,7 @@ var _mthadley$who$Views_Toolbar$viewItem = F4(
 			{
 				ctor: '::',
 				_0: A2(
-					_mthadley$who$Elements$searchLink,
+					_mthadley$who$Elements_Toolbar$searchLink,
 					{
 						ctor: '::',
 						_0: _mthadley$who$Router$linkTo(
@@ -24778,14 +24781,14 @@ var _mthadley$who$Views_Toolbar$viewResults = function (_p5) {
 	var _p8 = _p6.searchResults;
 	var _p7 = _p6.query;
 	return A2(
-		_mthadley$who$Elements$searchResults,
+		_mthadley$who$Elements_Toolbar$searchResults,
 		{ctor: '[]'},
 		{
 			ctor: '::',
 			_0: _elm_lang$core$Native_Utils.eq(
 				_elm_lang$core$List$length(_p8),
 				0) ? A2(
-				_mthadley$who$Elements$noResults,
+				_mthadley$who$Elements_Toolbar$noResults,
 				{ctor: '[]'},
 				{
 					ctor: '::',
@@ -24807,7 +24810,7 @@ var _mthadley$who$Views_Toolbar$viewResults = function (_p5) {
 						}
 					}
 				}) : A2(
-				_mthadley$who$Elements$resultsList,
+				_mthadley$who$Elements_Toolbar$resultsList,
 				{ctor: '[]'},
 				A2(
 					_elm_lang$core$List$indexedMap,
@@ -24930,12 +24933,12 @@ var _mthadley$who$Views_Toolbar$view = F2(
 		var _p16 = _p15;
 		var _p17 = _p16.query;
 		return A2(
-			_mthadley$who$Elements$toolbar,
+			_mthadley$who$Elements_Toolbar$toolbar,
 			{ctor: '[]'},
 			{
 				ctor: '::',
 				_0: A2(
-					_mthadley$who$Elements$toolbarContent,
+					_mthadley$who$Elements_Toolbar$toolbarContent,
 					{ctor: '[]'},
 					{
 						ctor: '::',
@@ -24943,7 +24946,7 @@ var _mthadley$who$Views_Toolbar$view = F2(
 						_1: {
 							ctor: '::',
 							_0: A2(
-								_mthadley$who$Elements$searchContainer,
+								_mthadley$who$Elements_Toolbar$searchContainer,
 								{
 									ctor: '::',
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$id('searchContainer'),
@@ -24952,7 +24955,7 @@ var _mthadley$who$Views_Toolbar$view = F2(
 								{
 									ctor: '::',
 									_0: A2(
-										_mthadley$who$Elements$searchInput,
+										_mthadley$who$Elements_Toolbar$searchInput,
 										{
 											ctor: '::',
 											_0: _rtfeldman$elm_css$Html_Styled_Attributes$disabled(
