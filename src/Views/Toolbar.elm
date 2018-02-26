@@ -141,7 +141,8 @@ viewItem query selectedIndex index item =
         ]
         [ Elements.searchLink
             [ Router.linkTo <| Router.ViewLegislator item.id
-            , Events.onClick <| Toggle False
+            , Events.onClick GoToSelection
+            , Events.onMouseEnter <| SetSelection index
             ]
             [ Avatar.view
                 [ Attr.css [ Css.marginRight <| Css.px 8 ] ]
@@ -187,8 +188,14 @@ type Msg
     = Noop
     | Search String
     | Toggle Bool
-    | ChangeSelection Int
+    | ChangeSelection Dir
+    | SetSelection Int
     | GoToSelection
+
+
+type Dir
+    = Up
+    | Down
 
 
 update : Msg -> Store -> Model -> ( Model, Cmd Msg )
@@ -197,8 +204,19 @@ update msg store model =
         Noop ->
             model ! []
 
-        ChangeSelection change ->
+        SetSelection index ->
+            { model | selectedIndex = index } ! []
+
+        ChangeSelection dir ->
             let
+                change =
+                    case dir of
+                        Up ->
+                            1
+
+                        Down ->
+                            -1
+
                 selectedIndex =
                     (model.selectedIndex + change)
                         % (max 1 <| List.length model.searchResults)
@@ -277,10 +295,10 @@ filterKeypress code =
             GoToSelection
 
         38 ->
-            ChangeSelection -1
+            ChangeSelection Down
 
         40 ->
-            ChangeSelection 1
+            ChangeSelection Up
 
         _ ->
             Noop
