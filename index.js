@@ -24675,11 +24675,8 @@ var _mthadley$who$Views_Toolbar$Model = F4(
 		return {searchResults: a, query: b, show: c, selectedIndex: d};
 	});
 var _mthadley$who$Views_Toolbar$GoToSelection = {ctor: 'GoToSelection'};
-var _mthadley$who$Views_Toolbar$ChangeSelection = function (a) {
-	return {ctor: 'ChangeSelection', _0: a};
-};
-var _mthadley$who$Views_Toolbar$Toggle = function (a) {
-	return {ctor: 'Toggle', _0: a};
+var _mthadley$who$Views_Toolbar$SetSelection = function (a) {
+	return {ctor: 'SetSelection', _0: a};
 };
 var _mthadley$who$Views_Toolbar$viewItem = F4(
 	function (query, selectedIndex, index, item) {
@@ -24712,9 +24709,13 @@ var _mthadley$who$Views_Toolbar$viewItem = F4(
 							_mthadley$who$Router$ViewLegislator(item.id)),
 						_1: {
 							ctor: '::',
-							_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(
-								_mthadley$who$Views_Toolbar$Toggle(false)),
-							_1: {ctor: '[]'}
+							_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(_mthadley$who$Views_Toolbar$GoToSelection),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Events$onMouseEnter(
+									_mthadley$who$Views_Toolbar$SetSelection(index)),
+								_1: {ctor: '[]'}
+							}
 						}
 					},
 					{
@@ -24819,6 +24820,12 @@ var _mthadley$who$Views_Toolbar$viewResults = function (_p5) {
 			_1: {ctor: '[]'}
 		});
 };
+var _mthadley$who$Views_Toolbar$ChangeSelection = function (a) {
+	return {ctor: 'ChangeSelection', _0: a};
+};
+var _mthadley$who$Views_Toolbar$Toggle = function (a) {
+	return {ctor: 'Toggle', _0: a};
+};
 var _mthadley$who$Views_Toolbar$subscriptions = function (model) {
 	return model.show ? _mthadley$who$Views_Toolbar$searchOutsideClicks(
 		_elm_lang$core$Basics$always(
@@ -24837,10 +24844,25 @@ var _mthadley$who$Views_Toolbar$update = F3(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					model,
 					{ctor: '[]'});
+			case 'SetSelection':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{selectedIndex: _p9._0}),
+					{ctor: '[]'});
 			case 'ChangeSelection':
+				var change = function () {
+					var _p10 = _p9._0;
+					if (_p10.ctor === 'Up') {
+						return 1;
+					} else {
+						return -1;
+					}
+				}();
 				var selectedIndex = A2(
 					_elm_lang$core$Basics_ops['%'],
-					model.selectedIndex + _p9._0,
+					model.selectedIndex + change,
 					A2(
 						_elm_lang$core$Basics$max,
 						1,
@@ -24852,23 +24874,23 @@ var _mthadley$who$Views_Toolbar$update = F3(
 						{selectedIndex: selectedIndex}),
 					{ctor: '[]'});
 			case 'GoToSelection':
-				var _p10 = function () {
-					var _p11 = A2(_elm_community$list_extra$List_Extra$getAt, model.selectedIndex, model.searchResults);
-					if (_p11.ctor === 'Just') {
-						var _p12 = _p11._0;
+				var _p11 = function () {
+					var _p12 = A2(_elm_community$list_extra$List_Extra$getAt, model.selectedIndex, model.searchResults);
+					if (_p12.ctor === 'Just') {
+						var _p13 = _p12._0;
 						return {
 							ctor: '_Tuple2',
-							_0: _p12.name,
+							_0: _p13.name,
 							_1: _elm_lang$navigation$Navigation$newUrl(
 								_mthadley$who$Router$reverse(
-									_mthadley$who$Router$ViewLegislator(_p12.id)))
+									_mthadley$who$Router$ViewLegislator(_p13.id)))
 						};
 					} else {
 						return {ctor: '_Tuple2', _0: model.query, _1: _elm_lang$core$Platform_Cmd$none};
 					}
 				}();
-				var name = _p10._0;
-				var cmd = _p10._1;
+				var name = _p11._0;
+				var cmd = _p11._1;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -24889,13 +24911,13 @@ var _mthadley$who$Views_Toolbar$update = F3(
 						})
 				};
 			case 'Search':
-				var _p13 = _p9._0;
+				var _p14 = _p9._0;
 				var searchResults = A2(
 					_elm_lang$core$List$take,
 					_mthadley$who$Views_Toolbar$maxItems,
 					A2(
 						_mthadley$who$Views_Toolbar$filterResults,
-						_p13,
+						_p14,
 						A2(
 							_krisajenkins$remotedata$RemoteData$withDefault,
 							{ctor: '[]'},
@@ -24904,7 +24926,7 @@ var _mthadley$who$Views_Toolbar$update = F3(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{query: _p13, searchResults: searchResults, selectedIndex: 0, show: true}),
+						{query: _p14, searchResults: searchResults, selectedIndex: 0, show: true}),
 					{ctor: '[]'});
 			default:
 				return A2(
@@ -24915,23 +24937,25 @@ var _mthadley$who$Views_Toolbar$update = F3(
 					{ctor: '[]'});
 		}
 	});
+var _mthadley$who$Views_Toolbar$Down = {ctor: 'Down'};
+var _mthadley$who$Views_Toolbar$Up = {ctor: 'Up'};
 var _mthadley$who$Views_Toolbar$filterKeypress = function (code) {
-	var _p14 = code;
-	switch (_p14) {
+	var _p15 = code;
+	switch (_p15) {
 		case 13:
 			return _mthadley$who$Views_Toolbar$GoToSelection;
 		case 38:
-			return _mthadley$who$Views_Toolbar$ChangeSelection(-1);
+			return _mthadley$who$Views_Toolbar$ChangeSelection(_mthadley$who$Views_Toolbar$Down);
 		case 40:
-			return _mthadley$who$Views_Toolbar$ChangeSelection(1);
+			return _mthadley$who$Views_Toolbar$ChangeSelection(_mthadley$who$Views_Toolbar$Up);
 		default:
 			return _mthadley$who$Views_Toolbar$Noop;
 	}
 };
 var _mthadley$who$Views_Toolbar$view = F2(
-	function (store, _p15) {
-		var _p16 = _p15;
-		var _p17 = _p16.query;
+	function (store, _p16) {
+		var _p17 = _p16;
+		var _p18 = _p17.query;
 		return A2(
 			_mthadley$who$Elements_Toolbar$toolbar,
 			{ctor: '[]'},
@@ -24968,7 +24992,7 @@ var _mthadley$who$Views_Toolbar$view = F2(
 													_0: _rtfeldman$elm_css$Html_Styled_Attributes$placeholder('Search...'),
 													_1: {
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled_Attributes$value(_p17),
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$value(_p18),
 														_1: {
 															ctor: '::',
 															_0: A2(
@@ -24993,9 +25017,9 @@ var _mthadley$who$Views_Toolbar$view = F2(
 										{ctor: '[]'}),
 									_1: {
 										ctor: '::',
-										_0: (_p16.show && (_elm_lang$core$Native_Utils.cmp(
-											_elm_lang$core$String$length(_p17),
-											0) > 0)) ? _mthadley$who$Views_Toolbar$viewResults(_p16) : _mthadley$who$Util_Html$empty,
+										_0: (_p17.show && (_elm_lang$core$Native_Utils.cmp(
+											_elm_lang$core$String$length(_p18),
+											0) > 0)) ? _mthadley$who$Views_Toolbar$viewResults(_p17) : _mthadley$who$Util_Html$empty,
 										_1: {ctor: '[]'}
 									}
 								}),
@@ -25195,7 +25219,7 @@ var _mthadley$who$Main$main = A2(
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _mthadley$who$Main$main !== 'undefined') {
-    _mthadley$who$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Dict.LeafColor":{"args":[],"tags":{"LBBlack":[],"LBlack":[]}},"Store.Msg":{"args":[],"tags":{"RequestIndex":[],"None":[],"RecieveIndex":["RemoteData.WebData (List Types.Index.Item)"]}},"Types.Party.Party":{"args":[],"tags":{"Other":[],"Democrat":[],"Independent":[],"Republican":[]}},"Types.State.State":{"args":[],"tags":{"TX":[],"OK":[],"MI":[],"VA":[],"NY":[],"DC":[],"FL":[],"AS":[],"GU":[],"KY":[],"CA":[],"TN":[],"ND":[],"MO":[],"NC":[],"IL":[],"LA":[],"KS":[],"IA":[],"ME":[],"UM":[],"NE":[],"MN":[],"AR":[],"RI":[],"GA":[],"WA":[],"DE":[],"MT":[],"PA":[],"HI":[],"MD":[],"MA":[],"CO":[],"NJ":[],"IN":[],"OH":[],"CT":[],"VI":[],"SD":[],"PR":[],"AK":[],"VT":[],"OR":[],"ID":[],"MP":[],"AL":[],"SC":[],"NV":[],"AZ":[],"NM":[],"NH":[],"WY":[],"WI":[],"MS":[],"WV":[],"UT":[]}},"Dict.Dict":{"args":["k","v"],"tags":{"RBNode_elm_builtin":["Dict.NColor","k","v","Dict.Dict k v","Dict.Dict k v"],"RBEmpty_elm_builtin":["Dict.LeafColor"]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"App.Msg":{"args":[],"tags":{"ToolbarMsg":["Views.Toolbar.Msg"],"RouteChange":["Router.Route"],"Noop":[],"StoreMsg":["Store.Msg"]}},"RemoteData.RemoteData":{"args":["e","a"],"tags":{"NotAsked":[],"Success":["a"],"Loading":[],"Failure":["e"]}},"Router.Route":{"args":[],"tags":{"Home":[],"NotFound":[],"ViewLegislator":["String"],"LegislatorIndex":["Maybe.Maybe Char"]}},"Dict.NColor":{"args":[],"tags":{"BBlack":[],"Red":[],"NBlack":[],"Black":[]}},"Http.Error":{"args":[],"tags":{"BadUrl":["String"],"NetworkError":[],"Timeout":[],"BadStatus":["Http.Response String"],"BadPayload":["String","Http.Response String"]}},"Views.Toolbar.Msg":{"args":[],"tags":{"Toggle":["Bool"],"GoToSelection":[],"Noop":[],"Search":["String"],"ChangeSelection":["Int"]}}},"aliases":{"RemoteData.WebData":{"args":["a"],"type":"RemoteData.RemoteData Http.Error a"},"Http.Response":{"args":["body"],"type":"{ url : String , status : { code : Int, message : String } , headers : Dict.Dict String String , body : body }"},"Types.Index.Item":{"args":[],"type":"{ name : String , lastName : String , id : String , party : Types.Party.Party , state : Types.State.State , photoUrl : Maybe.Maybe String }"}},"message":"App.Msg"},"versions":{"elm":"0.18.0"}});
+    _mthadley$who$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Dict.LeafColor":{"args":[],"tags":{"LBBlack":[],"LBlack":[]}},"Store.Msg":{"args":[],"tags":{"RequestIndex":[],"None":[],"RecieveIndex":["RemoteData.WebData (List Types.Index.Item)"]}},"Views.Toolbar.Dir":{"args":[],"tags":{"Down":[],"Up":[]}},"Types.Party.Party":{"args":[],"tags":{"Other":[],"Democrat":[],"Independent":[],"Republican":[]}},"Types.State.State":{"args":[],"tags":{"TX":[],"OK":[],"MI":[],"VA":[],"NY":[],"DC":[],"FL":[],"AS":[],"GU":[],"KY":[],"CA":[],"TN":[],"ND":[],"MO":[],"NC":[],"IL":[],"LA":[],"KS":[],"IA":[],"ME":[],"UM":[],"NE":[],"MN":[],"AR":[],"RI":[],"GA":[],"WA":[],"DE":[],"MT":[],"PA":[],"HI":[],"MD":[],"MA":[],"CO":[],"NJ":[],"IN":[],"OH":[],"CT":[],"VI":[],"SD":[],"PR":[],"AK":[],"VT":[],"OR":[],"ID":[],"MP":[],"AL":[],"SC":[],"NV":[],"AZ":[],"NM":[],"NH":[],"WY":[],"WI":[],"MS":[],"WV":[],"UT":[]}},"Dict.Dict":{"args":["k","v"],"tags":{"RBNode_elm_builtin":["Dict.NColor","k","v","Dict.Dict k v","Dict.Dict k v"],"RBEmpty_elm_builtin":["Dict.LeafColor"]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"App.Msg":{"args":[],"tags":{"ToolbarMsg":["Views.Toolbar.Msg"],"RouteChange":["Router.Route"],"Noop":[],"StoreMsg":["Store.Msg"]}},"RemoteData.RemoteData":{"args":["e","a"],"tags":{"NotAsked":[],"Success":["a"],"Loading":[],"Failure":["e"]}},"Router.Route":{"args":[],"tags":{"Home":[],"NotFound":[],"ViewLegislator":["String"],"LegislatorIndex":["Maybe.Maybe Char"]}},"Dict.NColor":{"args":[],"tags":{"BBlack":[],"Red":[],"NBlack":[],"Black":[]}},"Http.Error":{"args":[],"tags":{"BadUrl":["String"],"NetworkError":[],"Timeout":[],"BadStatus":["Http.Response String"],"BadPayload":["String","Http.Response String"]}},"Views.Toolbar.Msg":{"args":[],"tags":{"Toggle":["Bool"],"GoToSelection":[],"SetSelection":["Int"],"Noop":[],"Search":["String"],"ChangeSelection":["Views.Toolbar.Dir"]}}},"aliases":{"RemoteData.WebData":{"args":["a"],"type":"RemoteData.RemoteData Http.Error a"},"Http.Response":{"args":["body"],"type":"{ url : String , status : { code : Int, message : String } , headers : Dict.Dict String String , body : body }"},"Types.Index.Item":{"args":[],"type":"{ name : String , lastName : String , id : String , party : Types.Party.Party , state : Types.State.State , photoUrl : Maybe.Maybe String }"}},"message":"App.Msg"},"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])
