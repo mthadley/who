@@ -13,7 +13,7 @@ data:
 	@./init_data.py --url-base $(URL_BASE)
 
 $(ELM_MAIN): $(ELM_FILES)
-	elm-make --debug --yes src/Main.elm --warn --output $(ELM_MAIN)
+	elm-make --yes src/Main.elm --warn --output $(ELM_MAIN)
 
 $(OUT)/index.html: src/index.html
 	@cp src/index.html $(OUT)

@@ -54,7 +54,9 @@ view store model =
     Elements.pageCard []
         [ Elements.row []
             [ viewLetters store model
-            , div [] [ viewCards store.index model.activeLetter ]
+            , div [ Attr.css [ Css.flexGrow <| Css.num 1 ] ]
+                [ viewCards store.index model.activeLetter
+                ]
             ]
         ]
 

@@ -152,21 +152,18 @@ indexCard =
         , flexDirection column
         , hover [ makeShadow 2 ]
         , makeShadow 0
-        , margin <| px 16
         , padding <| px 8
-        , width <| px 190
         ]
 
 
 cardList : Element msg
 cardList =
     styled ul
-        [ displayFlex
-        , flexWrap wrap
-        , onPhone
-            [ alignItems center
-            , flexDirection column
-            ]
+        [ property "display" "grid"
+        , property "grid-gap" "24px"
+        , property "grid-template-columns"
+            "repeat(auto-fit, minmax(150px, min-content))"
+        , justifyContent center
         ]
 
 
