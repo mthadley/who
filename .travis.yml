@@ -19,7 +19,7 @@ script:
   - make all test
 
 before_deploy:
-  - brew install python3 pipenv
+  - brew install python3 pipenv || true
   - pipenv install --dev
   - URL_BASE="/who" make -e data api-base all
 
