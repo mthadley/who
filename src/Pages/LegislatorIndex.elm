@@ -17,6 +17,7 @@ import Views.Avatar as Avatar
 import Views.Link as Link exposing (view)
 
 
+
 -- MODEL
 
 
@@ -131,6 +132,7 @@ viewLetter currentRoute hasItems char =
                 currentRoute
                 (LegislatorIndex <| Just char)
                 content
+
           else
             Elements.currentLink [] [ content ]
         ]

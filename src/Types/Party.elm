@@ -1,6 +1,6 @@
 module Types.Party exposing (Party(..), decode, toString)
 
-import Json.Decode exposing (Decoder, map, string)
+import Json.Decode as Decode exposing (Decoder)
 
 
 type Party
@@ -12,7 +12,7 @@ type Party
 
 decode : Decoder Party
 decode =
-    map fromString string
+    Decode.map fromString Decode.string
 
 
 fromString : String -> Party
@@ -32,5 +32,16 @@ fromString name =
 
 
 toString : Party -> String
-toString =
-    Basics.toString
+toString party =
+    case party of
+        Democrat ->
+            "Democrat"
+
+        Republican ->
+            "Republican"
+
+        Independent ->
+            "Independent"
+
+        Other ->
+            "Other"

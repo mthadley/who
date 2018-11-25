@@ -1,15 +1,15 @@
-module Store
-    exposing
-        ( Msg
-        , Store
-        , init
-        , none
-        , requestIndex
-        , setRoute
-        , update
-        )
+module Store exposing
+    ( Msg
+    , Store
+    , init
+    , none
+    , requestIndex
+    , setRoute
+    , update
+    )
 
 import Api
+import Browser.Navigation exposing (Key)
 import RemoteData exposing (RemoteData(..), WebData)
 import Router exposing (Route)
 import Types.Index as Index
@@ -18,12 +18,17 @@ import Types.Index as Index
 type alias Store =
     { index : WebData (List Index.Item)
     , route : Route
+    , key : Key
     }
 
 
-init : Route -> ( Store, Cmd Msg )
-init =
-    update requestIndex << Store NotAsked
+init : Key -> Route -> ( Store, Cmd Msg )
+init key route =
+    update requestIndex
+        { index = NotAsked
+        , route = route
+        , key = key
+        }
 
 
 type Msg
@@ -36,7 +41,7 @@ update : Msg -> Store -> ( Store, Cmd Msg )
 update msg model =
     case msg of
         None ->
-            model ! []
+            ( model, Cmd.none )
 
         RequestIndex ->
             ( { model | index = Loading }
@@ -44,7 +49,7 @@ update msg model =
             )
 
         RecieveIndex index ->
-            { model | index = index } ! []
+            ( { model | index = index }, Cmd.none )
 
 
 none : Msg

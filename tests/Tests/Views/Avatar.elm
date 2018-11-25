@@ -1,4 +1,4 @@
-module Tests.Views.Avatar exposing (..)
+module Tests.Views.Avatar exposing (item, suite)
 
 import Test exposing (..)
 import Test.Html.Query as Query

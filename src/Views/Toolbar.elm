@@ -1,7 +1,8 @@
 port module Views.Toolbar exposing (Model, Msg, init, subscriptions, update, view)
 
+import Browser.Dom as Dom
+import Browser.Navigation exposing (pushUrl)
 import Css
-import Dom
 import Elements
 import Elements.Toolbar as Elements
 import Html.Styled as Html exposing (..)
@@ -9,7 +10,6 @@ import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events
 import Json.Decode as Decode
 import List.Extra exposing (getAt, interweave)
-import Navigation exposing (newUrl)
 import Regex
 import RemoteData exposing (RemoteData(..), WebData)
 import Router exposing (Route(..))
@@ -22,6 +22,7 @@ import Types.State as State
 import Util.Html exposing (empty)
 import Views.Avatar as Avatar
 import Views.Link as Link
+
 
 
 -- MODEL
@@ -76,6 +77,7 @@ view store ({ query, show } as model) =
                     []
                 , if show && String.length query > 0 then
                     viewResults model
+
                   else
                     empty
                 ]
@@ -104,7 +106,7 @@ viewLinks currentRoute =
                 [ Elements.brand [] [ text "W.H.O" ] ]
             ]
         ]
-            ++ List.map (uncurry <| viewLink currentRoute) links
+            ++ List.map (\( route, name ) -> viewLink currentRoute route name) links
 
 
 viewResults : Model -> Html Msg
@@ -116,6 +118,7 @@ viewResults { searchResults, query, selectedIndex } =
                 , b [] [ text query ]
                 , text "\"..."
                 ]
+
           else
             Elements.resultsList [] <|
                 List.indexedMap
@@ -130,6 +133,7 @@ viewItem query selectedIndex index item =
         ( activeColor, activeBg ) =
             if selectedIndex == index then
                 ( theme.secondary, theme.primary )
+
             else
                 ( theme.primary, theme.secondary )
     in
@@ -168,14 +172,16 @@ viewPartyLabel party =
 highlight : String -> String -> Html msg
 highlight input query =
     if String.length query > 1 then
-        let
-            regex =
-                Regex.caseInsensitive <| Regex.regex query
-        in
-        Regex.find Regex.All regex input
-            |> List.map (b [] << List.singleton << text << .match)
-            |> interweave (List.map text <| Regex.split Regex.All regex input)
-            |> span []
+        case Regex.fromStringWith { caseInsensitive = True, multiline = False } query of
+            Just regex ->
+                Regex.find regex input
+                    |> List.map (b [] << List.singleton << text << .match)
+                    |> interweave (List.map text <| Regex.split regex input)
+                    |> span []
+
+            Nothing ->
+                text input
+
     else
         text input
 
@@ -202,10 +208,10 @@ update : Msg -> Store -> Model -> ( Model, Cmd Msg )
 update msg store model =
     case msg of
         Noop ->
-            model ! []
+            ( model, Cmd.none )
 
         SetSelection index ->
-            { model | selectedIndex = index } ! []
+            ( { model | selectedIndex = index }, Cmd.none )
 
         ChangeSelection dir ->
             let
@@ -218,10 +224,11 @@ update msg store model =
                             -1
 
                 selectedIndex =
-                    (model.selectedIndex + change)
-                        % (max 1 <| List.length model.searchResults)
+                    modBy
+                        (model.selectedIndex + change)
+                        (max 1 <| List.length model.searchResults)
             in
-            { model | selectedIndex = selectedIndex } ! []
+            ( { model | selectedIndex = selectedIndex }, Cmd.none )
 
         GoToSelection ->
             let
@@ -229,7 +236,7 @@ update msg store model =
                     case getAt model.selectedIndex model.searchResults of
                         Just item ->
                             ( item.name
-                            , newUrl <| Router.reverse <| ViewLegislator <| item.id
+                            , pushUrl store.key <| Router.reverse <| ViewLegislator <| item.id
                             )
 
                         Nothing ->
@@ -249,16 +256,17 @@ update msg store model =
                         |> filterResults query
                         |> List.take maxItems
             in
-            { model
+            ( { model
                 | query = query
                 , searchResults = searchResults
                 , selectedIndex = 0
                 , show = True
-            }
-                ! []
+              }
+            , Cmd.none
+            )
 
         Toggle show ->
-            { model | show = show } ! []
+            ( { model | show = show }, Cmd.none )
 
 
 filterResults : String -> List Index.Item -> List Index.Item
@@ -311,5 +319,6 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     if model.show then
         searchOutsideClicks <| always <| Toggle False
+
     else
         Sub.none

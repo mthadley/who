@@ -1,7 +1,7 @@
 module Types.Index exposing (Item, decodeItem)
 
-import Json.Decode exposing (Decoder, nullable, string)
-import Json.Decode.Pipeline as Pipeline exposing (custom, decode, required)
+import Json.Decode as Decode exposing (Decoder, nullable, string)
+import Json.Decode.Pipeline as Pipeline exposing (custom, required)
 import Types.Party as Party exposing (Party)
 import Types.State as State exposing (State)
 
@@ -18,7 +18,7 @@ type alias Item =
 
 decodeItem : Decoder Item
 decodeItem =
-    Pipeline.decode Item
+    Decode.succeed Item
         |> required "name" string
         |> required "last_name" string
         |> required "id" string

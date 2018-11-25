@@ -6,6 +6,7 @@ import RemoteData exposing (WebData)
 import Types.Index as Index
 
 
+
 -- [[[cog
 -- import cog
 -- cog.outl("baseUrl : String")

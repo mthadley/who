@@ -1,4 +1,4 @@
-module Elements.Avatar exposing (..)
+module Elements.Avatar exposing (avatar)
 
 import Css exposing (..)
 import Elements exposing (Element)

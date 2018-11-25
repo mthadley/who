@@ -1,4 +1,4 @@
-module Tests.Views.Link exposing (..)
+module Tests.Views.Link exposing (suite)
 
 import Html.Styled exposing (text)
 import Router exposing (Route(..))

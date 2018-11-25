@@ -22,6 +22,7 @@ viewWithMatch strict attrs currentRoute route content =
         element =
             if matches strict currentRoute route then
                 Elements.currentLink attrs
+
             else
                 route
                     |> Router.reverse
@@ -37,6 +38,7 @@ matches : Bool -> Route -> Route -> Bool
 matches strict a b =
     if strict then
         a == b
+
     else
         looseMatch a b
 

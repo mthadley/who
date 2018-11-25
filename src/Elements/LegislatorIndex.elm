@@ -1,4 +1,4 @@
-module Elements.LegislatorIndex exposing (..)
+module Elements.LegislatorIndex exposing (letter, letterList)
 
 import Css exposing (..)
 import Elements exposing (Element, onPhone, truncate, ul)

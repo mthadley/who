@@ -1,7 +1,4 @@
-module Types.Legislator
-    exposing
-        ( Legislator
-        )
+module Types.Legislator exposing (Legislator)
 
 
 type alias Legislator =

@@ -1,10 +1,9 @@
-module Types.State
-    exposing
-        ( State
-        , decode
-        , toString
-        , toStringShort
-        )
+module Types.State exposing
+    ( State
+    , decode
+    , toString
+    , toStringShort
+    )
 
 import Json.Decode as Decode exposing (Decoder, string)
 
@@ -428,5 +427,175 @@ toString state =
 
 
 toStringShort : State -> String
-toStringShort =
-    Basics.toString
+toStringShort state =
+    case state of
+        AK ->
+            "AK"
+
+        AL ->
+            "AL"
+
+        AR ->
+            "AR"
+
+        AS ->
+            "AS"
+
+        AZ ->
+            "AZ"
+
+        CA ->
+            "CA"
+
+        CO ->
+            "CO"
+
+        CT ->
+            "CT"
+
+        DE ->
+            "DE"
+
+        DC ->
+            "DC"
+
+        FL ->
+            "FL"
+
+        GA ->
+            "GA"
+
+        GU ->
+            "GU"
+
+        HI ->
+            "HI"
+
+        IA ->
+            "IA"
+
+        ID ->
+            "ID"
+
+        IL ->
+            "IL"
+
+        IN ->
+            "IN"
+
+        KS ->
+            "KS"
+
+        KY ->
+            "KY"
+
+        LA ->
+            "LA"
+
+        MA ->
+            "MA"
+
+        MD ->
+            "MD"
+
+        ME ->
+            "ME"
+
+        MI ->
+            "MI"
+
+        MN ->
+            "MN"
+
+        MO ->
+            "MO"
+
+        MP ->
+            "MP"
+
+        MS ->
+            "MS"
+
+        MT ->
+            "MT"
+
+        NC ->
+            "NC"
+
+        ND ->
+            "ND"
+
+        NE ->
+            "NE"
+
+        NH ->
+            "NH"
+
+        NJ ->
+            "NJ"
+
+        NM ->
+            "NM"
+
+        NV ->
+            "NV"
+
+        NY ->
+            "NY"
+
+        OH ->
+            "OH"
+
+        OK ->
+            "OK"
+
+        OR ->
+            "OR"
+
+        PA ->
+            "PA"
+
+        PR ->
+            "PR"
+
+        RI ->
+            "RI"
+
+        SC ->
+            "SC"
+
+        SD ->
+            "SD"
+
+        TN ->
+            "TN"
+
+        TX ->
+            "TX"
+
+        UM ->
+            "UM"
+
+        UT ->
+            "UT"
+
+        VA ->
+            "VA"
+
+        VI ->
+            "VI"
+
+        VT ->
+            "VT"
+
+        WA ->
+            "WA"
+
+        WI ->
+            "WI"
+
+        WV ->
+            "WV"
+
+        WY ->
+            "WY"

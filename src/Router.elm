@@ -1,9 +1,16 @@
-module Router exposing (..)
+module Router exposing
+    ( Route(..)
+    , linkTo
+    , parse
+    , parseRoute
+    , reverse
+    )
 
 import Html.Styled exposing (Attribute)
 import Html.Styled.Attributes as Attr
-import Navigation exposing (Location)
-import UrlParser exposing (..)
+import Url exposing (Url)
+import Url.Parser as UrlParser exposing ((</>), (<?>), Parser)
+import Url.Parser.Query as QueryParser
 import Util.String exposing (firstChar)
 
 
@@ -16,40 +23,35 @@ type Route
 
 parseRoute : Parser (Route -> a) a
 parseRoute =
-    oneOf
-        [ map Home top
-        , map LegislatorIndex <| s "legislators" <?> charParam "name"
-        , map ViewLegislator <| s "legislator" </> string
+    UrlParser.oneOf
+        [ UrlParser.map Home UrlParser.top
+        , UrlParser.map LegislatorIndex <| UrlParser.s "legislators" <?> charParam "name"
+        , UrlParser.map ViewLegislator <| UrlParser.s "legislator" </> UrlParser.string
         ]
 
 
-charParam : String -> QueryParser (Maybe Char -> b) b
+charParam : String -> QueryParser.Parser (Maybe Char)
 charParam name =
-    customParam name (Maybe.andThen firstChar)
+    QueryParser.map (Maybe.andThen firstChar) <| QueryParser.string name
 
 
-parseLocation : Location -> Route
-parseLocation =
-    fixLocationQuery
-        >> parseHash parseRoute
-        >> Maybe.withDefault NotFound
-
-
-fixLocationQuery : Location -> Location
-fixLocationQuery location =
+parse : Url -> Route
+parse raw =
     let
-        hash =
-            String.split "?" location.hash
-                |> List.head
-                |> Maybe.withDefault ""
+        {- We are using hash routing on Github pages, so we need to turn
+           the fragment into a valid URL, and then parse that instead.
 
-        search =
-            String.split "?" location.hash
-                |> List.drop 1
-                |> String.join "?"
-                |> String.append "?"
+           https://github.com/rtfeldman/elm-spa-example/blob/master/src/Route.elm#L61
+        -}
+        url =
+            { raw
+                | path = Maybe.withDefault "" raw.fragment
+                , fragment = Nothing
+            }
     in
-    { location | hash = hash, search = search }
+    url
+        |> UrlParser.parse parseRoute
+        |> Maybe.withDefault NotFound
 
 
 reverse : Route -> String

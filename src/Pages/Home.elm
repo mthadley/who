@@ -5,7 +5,7 @@ import Html.Styled as Html exposing (..)
 import RemoteData
 import Store exposing (Store)
 import Types.Index as Index
-import Types.Party exposing (Party(Democrat, Republican))
+import Types.Party exposing (Party(..))
 
 
 description : String
@@ -42,7 +42,7 @@ view store =
 viewStat : Int -> String -> Html msg
 viewStat stat label =
     Elements.stat []
-        [ Elements.statCount [] [ text <| toString stat ]
+        [ Elements.statCount [] [ text <| String.fromInt stat ]
         , span [] [ text label ]
         ]
 

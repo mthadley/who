@@ -1,4 +1,4 @@
-module Elements.Toolbar exposing (..)
+module Elements.Toolbar exposing (arrowSize, brand, noResults, resultsList, searchContainer, searchInput, searchItem, searchLink, searchResults, toolbar, toolbarAccentHeight, toolbarContent, toolbarLinkItem, toolbarLinks)
 
 import Css exposing (..)
 import Elements
@@ -144,7 +144,7 @@ toolbar =
             , height toolbarAccentHeight
             , left zero
             , width <| pct 66
-            , bottom <| toolbarAccentHeight |*| px -1
+            , bottom <| px -4
             ]
         ]
 

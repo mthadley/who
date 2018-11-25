@@ -115,7 +115,7 @@ class Downloader:
             first_name=leg["name"]["first"],
             id=leg["id"]["bioguide"],
             last_name=leg["name"]["last"],
-            name=leg["name"]["official_full"],
+            name=leg["name"].get("official_full", leg["name"]["first"] + " " + leg["name"]["last"]),
             party=leg["terms"][-1]["party"],
             photo_url=None,
             state=leg["terms"][-1]["state"]

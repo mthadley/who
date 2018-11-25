@@ -45,6 +45,7 @@ view attrs size { photoUrl, party, name } =
         )
         [ if isNone photoUrl then
             text <| String.left 1 name
+
           else
             empty
         ]

@@ -1,5 +1,7 @@
-module App exposing (Model, Msg(RouteChange), init, subscriptions, update, view)
+module App exposing (Model, Msg(..), init, subscriptions, update, view)
 
+import Browser exposing (Document)
+import Browser.Navigation as Navigation exposing (Key)
 import Elements
 import Html.Styled as Html exposing (..)
 import Pages.Home
@@ -9,7 +11,9 @@ import Pages.NotFound
 import Router exposing (Route)
 import Store exposing (Store)
 import Styles
+import Url exposing (Url)
 import Views.Toolbar as Toolbar
+
 
 
 -- MODEL
@@ -29,11 +33,14 @@ type alias Model =
     }
 
 
-init : Route -> ( Model, Cmd Msg )
-init route =
+init : () -> Url -> Key -> ( Model, Cmd Msg )
+init flags url key =
     let
+        route =
+            Router.parse url
+
         ( store, storeCmd ) =
-            Store.init route
+            Store.init key route
 
         ( page, pageCmd ) =
             initPage route
@@ -53,13 +60,13 @@ initPage : Route -> ( Page, Cmd Msg )
 initPage route =
     case route of
         Router.Home ->
-            Home ! []
+            ( Home, Cmd.none )
 
         Router.LegislatorIndex char ->
-            (LegislatorIndex <| Pages.LegislatorIndex.init char) ! []
+            ( LegislatorIndex <| Pages.LegislatorIndex.init char, Cmd.none )
 
         Router.NotFound ->
-            NotFound ! []
+            ( NotFound, Cmd.none )
 
         Router.ViewLegislator id ->
             Pages.Legislator.init id
@@ -70,15 +77,20 @@ initPage route =
 -- VIEW
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    div []
-        [ Styles.styles
-        , Html.map ToolbarMsg <| Toolbar.view model.store model.toolbarModel
-        , Elements.main_ []
-            [ viewPage model.store model.page
+    let
+        content =
+            [ Styles.styles
+            , Html.map ToolbarMsg <| Toolbar.view model.store model.toolbarModel
+            , Elements.main_ []
+                [ viewPage model.store model.page
+                ]
             ]
-        ]
+    in
+    { title = "W.H.O."
+    , body = List.map Html.toUnstyled content
+    }
 
 
 viewPage : Store -> Page -> Html msg
@@ -103,6 +115,7 @@ viewPage store route =
 
 type Msg
     = Noop
+    | ClickedLink Browser.UrlRequest
     | StoreMsg Store.Msg
     | ToolbarMsg Toolbar.Msg
     | RouteChange Route
@@ -112,12 +125,22 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Noop ->
-            model ! []
+            ( model, Cmd.none )
 
-        ToolbarMsg msg ->
+        ClickedLink request ->
+            case request of
+                Browser.Internal url ->
+                    ( model
+                    , Navigation.pushUrl model.store.key (Url.toString url)
+                    )
+
+                Browser.External href ->
+                    ( model, Navigation.load href )
+
+        ToolbarMsg toolbarMsg ->
             let
                 ( toolbarModel, cmd ) =
-                    Toolbar.update msg model.store model.toolbarModel
+                    Toolbar.update toolbarMsg model.store model.toolbarModel
             in
             ( { model | toolbarModel = toolbarModel }
             , Cmd.map ToolbarMsg cmd
@@ -135,10 +158,10 @@ update msg model =
             , cmd
             )
 
-        StoreMsg msg ->
+        StoreMsg storeMsg ->
             let
                 ( store, cmd ) =
-                    Store.update msg model.store
+                    Store.update storeMsg model.store
             in
             ( { model | store = store }, Cmd.map StoreMsg cmd )
 

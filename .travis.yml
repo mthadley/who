@@ -15,8 +15,8 @@ install:
   - npm install -g elm@$ELM_VERSION elm-test@$ELM_TEST_VERSION elm-format@exp
 
 script:
-  - elm-format --validate src tests
   - make all test
+  - npx elm-format --validate src tests
 
 before_deploy:
   - brew install python3 pipenv || true
