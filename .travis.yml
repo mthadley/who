@@ -6,14 +6,6 @@ os:
 node_js:
   - "node"
 
-env:
-  global:
-    - ELM_VERSION=0.18.0
-    - ELM_TEST_VERSION=^0.18.12
-
-install:
-  - npm install -g elm@$ELM_VERSION elm-test@$ELM_TEST_VERSION elm-format@exp
-
 script:
   - make all test
   - npx elm-format --validate src tests

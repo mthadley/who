@@ -1,0 +1,17 @@
+{
+  "name": "who",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mthadley/who.git"
+  },
+  "author": "Michael Hadley",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "elm": "^0.19.0-bugfix2",
+    "elm-format": "^0.8.1",
+    "elm-test": "^0.19.0-rev3"
+  }
+}
