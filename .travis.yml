@@ -3,6 +3,10 @@ language: node_js
 os:
   - osx
 
+cache:
+  directories:
+    - dist/data
+
 node_js:
   - "node"
 
