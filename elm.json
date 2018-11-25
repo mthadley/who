@@ -16,6 +16,7 @@
             "elm/url": "1.0.0",
             "elm-community/list-extra": "8.1.0",
             "krisajenkins/remotedata": "5.0.0",
+            "mthadley/elm-hash-routing": "1.0.1",
             "rtfeldman/elm-css": "16.0.0"
         },
         "indirect": {
