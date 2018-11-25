@@ -152,9 +152,10 @@ viewItem query selectedIndex index item =
                 [ Attr.css [ Css.marginRight <| Css.px 8 ] ]
                 Avatar.Sm
                 item
-            , div []
+            , styled div
+                [ Css.overflow Css.hidden ]
+                []
                 [ highlight item.name query
-                , br [] []
                 , viewPartyLabel item.party
                 , Elements.stateLabel []
                     [ text <| " - " ++ State.toString item.state ]
@@ -177,7 +178,7 @@ highlight input query =
                 Regex.find regex input
                     |> List.map (b [] << List.singleton << text << .match)
                     |> interweave (List.map text <| Regex.split regex input)
-                    |> span []
+                    |> Elements.name []
 
             Nothing ->
                 text input

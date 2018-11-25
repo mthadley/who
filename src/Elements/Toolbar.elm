@@ -1,4 +1,20 @@
-module Elements.Toolbar exposing (arrowSize, brand, noResults, resultsList, searchContainer, searchInput, searchItem, searchLink, searchResults, toolbar, toolbarAccentHeight, toolbarContent, toolbarLinkItem, toolbarLinks)
+module Elements.Toolbar exposing
+    ( arrowSize
+    , brand
+    , name
+    , noResults
+    , resultsList
+    , searchContainer
+    , searchInput
+    , searchItem
+    , searchLink
+    , searchResults
+    , toolbar
+    , toolbarAccentHeight
+    , toolbarContent
+    , toolbarLinkItem
+    , toolbarLinks
+    )
 
 import Css exposing (..)
 import Elements
@@ -91,6 +107,15 @@ searchItem =
         ]
 
 
+name : Element msg
+name =
+    styled Html.div
+        [ textOverflow ellipsis
+        , whiteSpace noWrap
+        , overflow hidden
+        ]
+
+
 searchLink : Element msg
 searchLink =
     styled Html.a
@@ -110,6 +135,7 @@ searchResults =
         , position absolute
         , top <| px 52
         , right <| px 0
+        , padding2 (px 6) zero
         , after
             [ contentEmpty
             , top <| px -28
