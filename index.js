@@ -10930,6 +10930,10 @@ var author$project$Elements$Toolbar$searchResults = A2(
 			rtfeldman$elm_css$Css$px(52)),
 			rtfeldman$elm_css$Css$right(
 			rtfeldman$elm_css$Css$px(0)),
+			A2(
+			rtfeldman$elm_css$Css$padding2,
+			rtfeldman$elm_css$Css$px(6),
+			rtfeldman$elm_css$Css$zero),
 			rtfeldman$elm_css$Css$after(
 			_List_fromArray(
 				[
@@ -10985,6 +10989,15 @@ var author$project$Views$Avatar$Sm = 0;
 var author$project$Views$Toolbar$SetSelection = function (a) {
 	return {$: 4, a: a};
 };
+var author$project$Elements$Toolbar$name = A2(
+	rtfeldman$elm_css$Html$Styled$styled,
+	rtfeldman$elm_css$Html$Styled$div,
+	_List_fromArray(
+		[
+			rtfeldman$elm_css$Css$textOverflow(rtfeldman$elm_css$Css$ellipsis),
+			rtfeldman$elm_css$Css$whiteSpace(rtfeldman$elm_css$Css$noWrap),
+			rtfeldman$elm_css$Css$overflow(rtfeldman$elm_css$Css$hidden)
+		]));
 var elm$regex$Regex$Match = F4(
 	function (match, index, number, submatches) {
 		return {c_: index, c4: match, dh: number, dy: submatches};
@@ -11039,7 +11052,7 @@ var author$project$Views$Toolbar$highlight = F2(
 			if (!_n0.$) {
 				var regex = _n0.a;
 				return A2(
-					rtfeldman$elm_css$Html$Styled$span,
+					author$project$Elements$Toolbar$name,
 					_List_Nil,
 					A2(
 						elm_community$list_extra$List$Extra$interweave,
@@ -11109,7 +11122,6 @@ var author$project$Views$Toolbar$viewPartyLabel = function (party) {
 				author$project$Types$Party$toString(party))
 			]));
 };
-var rtfeldman$elm_css$Html$Styled$br = rtfeldman$elm_css$Html$Styled$node('br');
 var elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 0, a: a};
 };
@@ -11184,13 +11196,17 @@ var author$project$Views$Toolbar$viewItem = F4(
 								]),
 							0,
 							item),
-							A2(
+							A4(
+							rtfeldman$elm_css$Html$Styled$styled,
 							rtfeldman$elm_css$Html$Styled$div,
+							_List_fromArray(
+								[
+									rtfeldman$elm_css$Css$overflow(rtfeldman$elm_css$Css$hidden)
+								]),
 							_List_Nil,
 							_List_fromArray(
 								[
 									A2(author$project$Views$Toolbar$highlight, item.c8, query),
-									A2(rtfeldman$elm_css$Html$Styled$br, _List_Nil, _List_Nil),
 									author$project$Views$Toolbar$viewPartyLabel(item.dm),
 									A2(
 									author$project$Elements$stateLabel,
