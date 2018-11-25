@@ -70,7 +70,7 @@ view store ({ query, show } as model) =
                     , Attr.id searchInputId
                     , Attr.placeholder "Search..."
                     , Attr.value query
-                    , Events.on "keydown" (Decode.map filterKeypress Events.keyCode)
+                    , Events.custom "keydown" (Decode.map filterKeypress Events.keyCode)
                     , Events.onFocus <| Toggle True
                     , Events.onInput Search
                     ]
@@ -226,8 +226,8 @@ update msg store model =
 
                 selectedIndex =
                     modBy
-                        (model.selectedIndex + change)
                         (max 1 <| List.length model.searchResults)
+                        (model.selectedIndex + change)
             in
             ( { model | selectedIndex = selectedIndex }, Cmd.none )
 
@@ -297,20 +297,30 @@ startsWith query first second =
             compare first.name second.name
 
 
-filterKeypress : Int -> Msg
+filterKeypress : Int -> { message : Msg, preventDefault : Bool, stopPropagation : Bool }
 filterKeypress code =
+    let
+        preventDefaultWith msg =
+            { message = msg
+            , preventDefault = True
+            , stopPropagation = True
+            }
+    in
     case code of
         13 ->
-            GoToSelection
+            preventDefaultWith GoToSelection
 
         38 ->
-            ChangeSelection Down
+            preventDefaultWith (ChangeSelection Down)
 
         40 ->
-            ChangeSelection Up
+            preventDefaultWith (ChangeSelection Up)
 
         _ ->
-            Noop
+            { message = Noop
+            , preventDefault = False
+            , stopPropagation = False
+            }
 
 
 port searchOutsideClicks : (() -> msg) -> Sub msg
