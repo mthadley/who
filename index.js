@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.br.aE === region.bO.aE)
+	if (region.br.aF === region.bO.aF)
 	{
-		return 'on line ' + region.br.aE;
+		return 'on line ' + region.br.aF;
 	}
-	return 'on lines ' + region.br.aE + ' through ' + region.bO.aE;
+	return 'on lines ' + region.br.aF + ' through ' + region.bO.aF;
 }
 
 
@@ -2393,7 +2393,7 @@ function _Http_configureProgress(xhr, maybeProgress)
 
 function _Http_configureRequest(xhr, request)
 {
-	for (var headers = request.aX; headers.b; headers = headers.b) // WHILE_CONS
+	for (var headers = request.aY; headers.b; headers = headers.b) // WHILE_CONS
 	{
 		xhr.setRequestHeader(headers.a.a, headers.a.b);
 	}
@@ -2435,7 +2435,7 @@ function _Http_toResponse(xhr)
 	return {
 		dF: xhr.responseURL,
 		dx: { cK: xhr.status, b1: xhr.statusText },
-		aX: _Http_parseHeaders(xhr.getAllResponseHeaders()),
+		aY: _Http_parseHeaders(xhr.getAllResponseHeaders()),
 		cD: xhr.response
 	};
 }
@@ -2860,7 +2860,7 @@ var _VirtualDom_mapEventRecord = F2(function(func, record)
 	return {
 		b1: func(record.b1),
 		cn: record.cn,
-		b8: record.b8
+		b9: record.b9
 	}
 });
 
@@ -3132,7 +3132,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.cn;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.b8) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.b9) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -4122,7 +4122,7 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 		impl.dD,
 		impl.dz,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.aJ && impl.aJ(sendToApp)
+			var divertHrefToApp = impl.aK && impl.aK(sendToApp)
 			var view = impl.dG;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
@@ -4197,7 +4197,7 @@ function _Browser_application(impl)
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		aJ: function(sendToApp)
+		aK: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4213,9 +4213,9 @@ function _Browser_application(impl)
 					var next = elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.cb === next.cb
+							&& curr.cc === next.cc
 							&& curr.bU === next.bU
-							&& curr.b7.a === next.b7.a
+							&& curr.b8.a === next.b8.a
 						)
 							? elm$browser$Browser$Internal(next)
 							: elm$browser$Browser$External(href)
@@ -4390,8 +4390,8 @@ function _Browser_getViewport()
 		cv: {
 			bb: _Browser_window.pageXOffset,
 			bc: _Browser_window.pageYOffset,
-			aw: _Browser_doc.documentElement.clientWidth,
-			ag: _Browser_doc.documentElement.clientHeight
+			ax: _Browser_doc.documentElement.clientWidth,
+			ah: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4401,8 +4401,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		aw: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		ag: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		ax: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		ah: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4426,14 +4426,14 @@ function _Browser_getViewportOf(id)
 	{
 		return {
 			cj: {
-				aw: node.scrollWidth,
-				ag: node.scrollHeight
+				ax: node.scrollWidth,
+				ah: node.scrollHeight
 			},
 			cv: {
 				bb: node.scrollLeft,
 				bc: node.scrollTop,
-				aw: node.clientWidth,
-				ag: node.clientHeight
+				ax: node.clientWidth,
+				ah: node.clientHeight
 			}
 		};
 	});
@@ -4467,14 +4467,14 @@ function _Browser_getElement(id)
 			cv: {
 				bb: x,
 				bc: y,
-				aw: _Browser_doc.documentElement.clientWidth,
-				ag: _Browser_doc.documentElement.clientHeight
+				ax: _Browser_doc.documentElement.clientWidth,
+				ah: _Browser_doc.documentElement.clientHeight
 			},
 			cP: {
 				bb: x + rect.left,
 				bc: y + rect.top,
-				aw: rect.width,
-				ag: rect.height
+				ax: rect.width,
+				ah: rect.height
 			}
 		};
 	});
@@ -5213,26 +5213,6 @@ var author$project$App$initPage = function (route) {
 	}
 };
 var author$project$Router$NotFound = {$: 3};
-var author$project$Router$fixPathQuery = function (url) {
-	var _n0 = function () {
-		var _n1 = A2(elm$core$String$split, '?', url.a4);
-		if ((_n1.b && _n1.b.b) && (!_n1.b.b.b)) {
-			var path = _n1.a;
-			var _n2 = _n1.b;
-			var query = _n2.a;
-			return _Utils_Tuple2(
-				path,
-				elm$core$Maybe$Just(query));
-		} else {
-			return _Utils_Tuple2(url.a4, url.cc);
-		}
-	}();
-	var newPath = _n0.a;
-	var newQuery = _n0.b;
-	return _Utils_update(
-		url,
-		{a4: newPath, cc: newQuery});
-};
 var author$project$Router$Home = {$: 0};
 var author$project$Router$LegislatorIndex = function (a) {
 	return {$: 1, a: a};
@@ -5403,11 +5383,11 @@ var elm$core$List$map = F2(
 var elm$url$Url$Parser$Parser = elm$core$Basics$identity;
 var elm$url$Url$Parser$State = F5(
 	function (visited, unvisited, params, frag, value) {
-		return {O: frag, S: params, L: unvisited, B: value, X: visited};
+		return {O: frag, S: params, L: unvisited, B: value, Y: visited};
 	});
 var elm$url$Url$Parser$mapState = F2(
 	function (func, _n0) {
-		var visited = _n0.X;
+		var visited = _n0.Y;
 		var unvisited = _n0.L;
 		var params = _n0.S;
 		var frag = _n0.O;
@@ -5424,7 +5404,7 @@ var elm$url$Url$Parser$map = F2(
 	function (subValue, _n0) {
 		var parseArg = _n0;
 		return function (_n1) {
-			var visited = _n1.X;
+			var visited = _n1.Y;
 			var unvisited = _n1.L;
 			var params = _n1.S;
 			var frag = _n1.O;
@@ -5466,7 +5446,7 @@ var elm$url$Url$Parser$oneOf = function (parsers) {
 var elm$url$Url$Parser$query = function (_n0) {
 	var queryParser = _n0;
 	return function (_n1) {
-		var visited = _n1.X;
+		var visited = _n1.Y;
 		var unvisited = _n1.L;
 		var params = _n1.S;
 		var frag = _n1.O;
@@ -5504,7 +5484,7 @@ var elm$url$Url$Parser$questionMark = F2(
 	});
 var elm$url$Url$Parser$s = function (str) {
 	return function (_n0) {
-		var visited = _n0.X;
+		var visited = _n0.Y;
 		var unvisited = _n0.L;
 		var params = _n0.S;
 		var frag = _n0.O;
@@ -5530,7 +5510,7 @@ var elm$url$Url$Parser$s = function (str) {
 var elm$url$Url$Parser$custom = F2(
 	function (tipe, stringToSomething) {
 		return function (_n0) {
-			var visited = _n0.X;
+			var visited = _n0.Y;
 			var unvisited = _n0.L;
 			var params = _n0.S;
 			var frag = _n0.O;
@@ -6176,26 +6156,15 @@ var elm$url$Url$Parser$parse = F2(
 				A5(
 					elm$url$Url$Parser$State,
 					_List_Nil,
-					elm$url$Url$Parser$preparePath(url.a4),
-					elm$url$Url$Parser$prepareQuery(url.cc),
+					elm$url$Url$Parser$preparePath(url.b6),
+					elm$url$Url$Parser$prepareQuery(url.T),
 					url.bR,
 					elm$core$Basics$identity)));
 	});
-var author$project$Router$parse = function (raw) {
-	var url = _Utils_update(
-		raw,
-		{
-			bR: elm$core$Maybe$Nothing,
-			a4: A2(elm$core$Maybe$withDefault, '', raw.bR)
-		});
-	return A2(
-		elm$core$Maybe$withDefault,
-		author$project$Router$NotFound,
-		A2(
-			elm$url$Url$Parser$parse,
-			author$project$Router$parseRoute,
-			author$project$Router$fixPathQuery(url)));
-};
+var author$project$Router$parse = A2(
+	elm$core$Basics$composeR,
+	elm$url$Url$Parser$parse(author$project$Router$parseRoute),
+	elm$core$Maybe$withDefault(author$project$Router$NotFound));
 var author$project$Store$RequestIndex = {$: 1};
 var author$project$Store$requestIndex = author$project$Store$RequestIndex;
 var author$project$Api$baseUrl = '/who/data/';
@@ -6516,7 +6485,7 @@ var elm$http$Http$get = F2(
 			{
 				cD: elm$http$Http$emptyBody,
 				bg: elm$http$Http$expectJson(decoder),
-				aX: _List_Nil,
+				aY: _List_Nil,
 				bm: 'GET',
 				bv: elm$core$Maybe$Nothing,
 				dF: url,
@@ -6680,7 +6649,7 @@ var author$project$Store$init = F2(
 			author$project$Store$requestIndex,
 			{c_: krisajenkins$remotedata$RemoteData$NotAsked, c2: key, dt: route});
 	});
-var author$project$Views$Toolbar$init = {cc: '', an: _List_Nil, K: 0, U: false};
+var author$project$Views$Toolbar$init = {T: '', ao: _List_Nil, K: 0, V: false};
 var author$project$App$init = F3(
 	function (flags, url, key) {
 		var route = author$project$Router$parse(url);
@@ -6691,7 +6660,7 @@ var author$project$App$init = F3(
 		var page = _n1.a;
 		var pageCmd = _n1.b;
 		return _Utils_Tuple2(
-			{a3: page, w: store, at: author$project$Views$Toolbar$init},
+			{a4: page, w: store, au: author$project$Views$Toolbar$init},
 			elm$core$Platform$Cmd$batch(
 				_List_fromArray(
 					[
@@ -6715,7 +6684,7 @@ var elm$core$Basics$always = F2(
 var elm$core$Platform$Sub$batch = _Platform_batch;
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
 var author$project$Views$Toolbar$subscriptions = function (model) {
-	return model.U ? author$project$Views$Toolbar$searchOutsideClicks(
+	return model.V ? author$project$Views$Toolbar$searchOutsideClicks(
 		elm$core$Basics$always(
 			author$project$Views$Toolbar$Toggle(false))) : elm$core$Platform$Sub$none;
 };
@@ -6724,7 +6693,7 @@ var author$project$App$subscriptions = function (model) {
 	return A2(
 		elm$core$Platform$Sub$map,
 		author$project$App$ToolbarMsg,
-		author$project$Views$Toolbar$subscriptions(model.at));
+		author$project$Views$Toolbar$subscriptions(model.au));
 };
 var author$project$Store$setRoute = F2(
 	function (route, store) {
@@ -6878,7 +6847,7 @@ var elm$core$String$left = F2(
 var elm$core$String$toInt = _String_toInt;
 var elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {bR: fragment, bU: host, a4: path, b7: port_, cb: protocol, cc: query};
+		return {bR: fragment, bU: host, b6: path, b8: port_, cc: protocol, T: query};
 	});
 var elm$url$Url$chompBeforePath = F5(
 	function (protocol, path, params, frag, str) {
@@ -7184,7 +7153,7 @@ var author$project$Views$Toolbar$update = F3(
 					A2(
 						elm$core$Basics$max,
 						1,
-						elm$core$List$length(model.an)),
+						elm$core$List$length(model.ao)),
 					model.K + change);
 				return _Utils_Tuple2(
 					_Utils_update(
@@ -7193,7 +7162,7 @@ var author$project$Views$Toolbar$update = F3(
 					elm$core$Platform$Cmd$none);
 			case 5:
 				var _n2 = function () {
-					var _n3 = A2(elm_community$list_extra$List$Extra$getAt, model.K, model.an);
+					var _n3 = A2(elm_community$list_extra$List$Extra$getAt, model.K, model.ao);
 					if (!_n3.$) {
 						var item = _n3.a;
 						return _Utils_Tuple2(
@@ -7204,7 +7173,7 @@ var author$project$Views$Toolbar$update = F3(
 								author$project$Router$reverse(
 									author$project$Router$ViewLegislator(item.bV))));
 					} else {
-						return _Utils_Tuple2(model.cc, elm$core$Platform$Cmd$none);
+						return _Utils_Tuple2(model.T, elm$core$Platform$Cmd$none);
 					}
 				}();
 				var name = _n2.a;
@@ -7212,7 +7181,7 @@ var author$project$Views$Toolbar$update = F3(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{cc: name, U: false}),
+						{T: name, V: false}),
 					elm$core$Platform$Cmd$batch(
 						_List_fromArray(
 							[
@@ -7234,14 +7203,14 @@ var author$project$Views$Toolbar$update = F3(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{cc: query, an: searchResults, K: 0, U: true}),
+						{T: query, ao: searchResults, K: 0, V: true}),
 					elm$core$Platform$Cmd$none);
 			default:
 				var show = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{U: show}),
+						{V: show}),
 					elm$core$Platform$Cmd$none);
 		}
 	});
@@ -7268,7 +7237,7 @@ var elm$url$Url$addPrefixed = F3(
 	});
 var elm$url$Url$toString = function (url) {
 	var http = function () {
-		var _n0 = url.cb;
+		var _n0 = url.cc;
 		if (!_n0) {
 			return 'http://';
 		} else {
@@ -7282,13 +7251,13 @@ var elm$url$Url$toString = function (url) {
 		A3(
 			elm$url$Url$addPrefixed,
 			'?',
-			url.cc,
+			url.T,
 			_Utils_ap(
 				A2(
 					elm$url$Url$addPort,
-					url.b7,
+					url.b8,
 					_Utils_ap(http, url.bU)),
-				url.a4)));
+				url.b6)));
 };
 var author$project$App$update = F2(
 	function (msg, model) {
@@ -7313,13 +7282,13 @@ var author$project$App$update = F2(
 				}
 			case 3:
 				var toolbarMsg = msg.a;
-				var _n2 = A3(author$project$Views$Toolbar$update, toolbarMsg, model.w, model.at);
+				var _n2 = A3(author$project$Views$Toolbar$update, toolbarMsg, model.w, model.au);
 				var toolbarModel = _n2.a;
 				var cmd = _n2.b;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{at: toolbarModel}),
+						{au: toolbarModel}),
 					A2(elm$core$Platform$Cmd$map, author$project$App$ToolbarMsg, cmd));
 			case 4:
 				var route = msg.a;
@@ -7330,7 +7299,7 @@ var author$project$App$update = F2(
 					_Utils_update(
 						model,
 						{
-							a3: page,
+							a4: page,
 							w: A2(author$project$Store$setRoute, route, model.w)
 						}),
 					cmd);
@@ -7366,20 +7335,20 @@ var rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
 		return {
 			bx: 0,
 			bI: 0,
-			ac: 0,
+			ad: 0,
 			m: 0,
-			aD: 0,
-			ah: 0,
-			H: 0,
+			aE: 0,
 			ai: 0,
+			H: 0,
 			aj: 0,
+			ak: 0,
 			P: 0,
 			Q: 0,
 			z: 0,
 			J: numericValue,
-			ar: 0,
-			au: unitLabel,
-			aQ: units,
+			as: 0,
+			av: unitLabel,
+			aR: units,
 			B: _Utils_ap(
 				elm$core$String$fromFloat(numericValue),
 				unitLabel)
@@ -7407,11 +7376,11 @@ var rtfeldman$elm_css$Css$cssFunction = F2(
 var rtfeldman$elm_css$Css$rgba = F4(
 	function (r, g, b, alpha) {
 		return {
-			ay: alpha,
-			aA: b,
+			az: alpha,
+			aB: b,
 			y: 0,
-			aC: g,
-			aI: r,
+			aD: g,
+			aJ: r,
 			B: A2(
 				rtfeldman$elm_css$Css$cssFunction,
 				'rgba',
@@ -7428,7 +7397,7 @@ var rtfeldman$elm_css$Css$rgba = F4(
 		};
 	});
 var rtfeldman$elm_css$Css$UnitlessInteger = 0;
-var rtfeldman$elm_css$Css$zero = {aD: 0, ah: 0, H: 0, ai: 0, aj: 0, P: 0, Q: 0, dh: 0, J: 0, a1: 0, au: '', aQ: 0, B: '0'};
+var rtfeldman$elm_css$Css$zero = {aE: 0, ai: 0, H: 0, aj: 0, ak: 0, P: 0, Q: 0, dh: 0, J: 0, a2: 0, av: '', aR: 0, B: '0'};
 var author$project$Elements$makeShadow = function (height) {
 	return A4(
 		rtfeldman$elm_css$Css$boxShadow4,
@@ -7446,11 +7415,11 @@ var rtfeldman$elm_css$Css$withPrecedingHash = function (str) {
 };
 var rtfeldman$elm_css$Css$erroneousHex = function (str) {
 	return {
-		ay: 1,
-		aA: 0,
+		az: 1,
+		aB: 0,
 		y: 0,
-		aC: 0,
-		aI: 0,
+		aD: 0,
+		aJ: 0,
 		B: rtfeldman$elm_css$Css$withPrecedingHash(str)
 	};
 };
@@ -7696,11 +7665,11 @@ var rtfeldman$elm_css$Css$validHex = F5(
 			var blue = _n6.a.a;
 			var alpha = _n6.b.a;
 			return {
-				ay: alpha / 255,
-				aA: blue,
+				az: alpha / 255,
+				aB: blue,
 				y: 0,
-				aC: green,
-				aI: red,
+				aD: green,
+				aJ: red,
 				B: rtfeldman$elm_css$Css$withPrecedingHash(str)
 			};
 		} else {
@@ -7838,7 +7807,7 @@ var rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
 	});
 var Skinney$murmur3$Murmur3$HashData = F4(
 	function (shift, seed, hash, charsProcessed) {
-		return {_: charsProcessed, af: hash, T: seed, ao: shift};
+		return {aa: charsProcessed, ag: hash, U: seed, ap: shift};
 	});
 var Skinney$murmur3$Murmur3$c1 = 3432918353;
 var Skinney$murmur3$Murmur3$c2 = 461845907;
@@ -7857,14 +7826,14 @@ var Skinney$murmur3$Murmur3$rotlBy = F2(
 var elm$core$Basics$neq = _Utils_notEqual;
 var elm$core$Bitwise$xor = _Bitwise_xor;
 var Skinney$murmur3$Murmur3$finalize = function (data) {
-	var acc = data.af ? (data.T ^ A2(
+	var acc = data.ag ? (data.U ^ A2(
 		Skinney$murmur3$Murmur3$multiplyBy,
 		Skinney$murmur3$Murmur3$c2,
 		A2(
 			Skinney$murmur3$Murmur3$rotlBy,
 			15,
-			A2(Skinney$murmur3$Murmur3$multiplyBy, Skinney$murmur3$Murmur3$c1, data.af)))) : data.T;
-	var h0 = acc ^ data._;
+			A2(Skinney$murmur3$Murmur3$multiplyBy, Skinney$murmur3$Murmur3$c1, data.ag)))) : data.U;
+	var h0 = acc ^ data.aa;
 	var h1 = A2(Skinney$murmur3$Murmur3$multiplyBy, 2246822507, h0 ^ (h0 >>> 16));
 	var h2 = A2(Skinney$murmur3$Murmur3$multiplyBy, 3266489909, h1 ^ (h1 >>> 13));
 	return (h2 ^ (h2 >>> 16)) >>> 0;
@@ -7887,17 +7856,17 @@ var Skinney$murmur3$Murmur3$mix = F2(
 	});
 var Skinney$murmur3$Murmur3$hashFold = F2(
 	function (c, data) {
-		var res = data.af | ((255 & elm$core$Char$toCode(c)) << data.ao);
-		var _n0 = data.ao;
+		var res = data.ag | ((255 & elm$core$Char$toCode(c)) << data.ap);
+		var _n0 = data.ap;
 		if (_n0 === 24) {
 			return {
-				_: data._ + 1,
-				af: 0,
-				T: A2(Skinney$murmur3$Murmur3$mix, data.T, res),
-				ao: 0
+				aa: data.aa + 1,
+				ag: 0,
+				U: A2(Skinney$murmur3$Murmur3$mix, data.U, res),
+				ap: 0
 			};
 		} else {
-			return {_: data._ + 1, af: res, T: data.T, ao: data.ao + 8};
+			return {aa: data.aa + 1, ag: res, U: data.U, ap: data.ap + 8};
 		}
 	});
 var elm$core$String$foldl = _String_foldl;
@@ -9492,7 +9461,7 @@ var rtfeldman$elm_css$Css$alignItems = function (fn) {
 		fn(rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
 };
 var rtfeldman$elm_css$Css$center = rtfeldman$elm_css$Css$prop1('center');
-var rtfeldman$elm_css$Css$row = {bi: 0, aB: 0, B: 'row'};
+var rtfeldman$elm_css$Css$row = {bi: 0, aC: 0, B: 'row'};
 var rtfeldman$elm_css$Css$column = _Utils_update(
 	rtfeldman$elm_css$Css$row,
 	{B: 'column'});
@@ -9759,7 +9728,7 @@ var author$project$Pages$Legislator$view = function (model) {
 			]));
 };
 var rtfeldman$elm_css$Css$listStyle = rtfeldman$elm_css$Css$prop1('list-style');
-var rtfeldman$elm_css$Css$none = {Y: 0, bF: 0, p: 0, a: 0, g: 0, cY: 0, bY: 0, bk: 0, aj: 0, P: 0, z: 0, c: 0, b: 0, bo: 0, a1: 0, $7: 0, v: 0, a5: 0, du: 0, aq: 0, W: 0, t: 0, e: 0, dE: 0, B: 'none'};
+var rtfeldman$elm_css$Css$none = {Z: 0, bF: 0, p: 0, a: 0, g: 0, cY: 0, bY: 0, bk: 0, ak: 0, P: 0, z: 0, c: 0, b: 0, bo: 0, a2: 0, $7: 0, v: 0, a5: 0, du: 0, ar: 0, X: 0, t: 0, e: 0, dE: 0, B: 'none'};
 var rtfeldman$elm_css$Html$Styled$ul = rtfeldman$elm_css$Html$Styled$node('ul');
 var author$project$Elements$ul = A2(
 	rtfeldman$elm_css$Html$Styled$styled,
@@ -9822,10 +9791,10 @@ var rtfeldman$elm_css$Css$num = function (val) {
 		Q: 0,
 		z: 0,
 		dh: 0,
-		a$: 0,
+		a0: 0,
 		J: val,
-		au: '',
-		aQ: 0,
+		av: '',
+		aR: 0,
 		B: elm$core$String$fromFloat(val)
 	};
 };
@@ -9879,8 +9848,8 @@ var author$project$Elements$indexCard = A2(
 			rtfeldman$elm_css$Css$px(8))
 		]));
 var rtfeldman$elm_css$Css$ellipsis = {cs: 0, B: 'ellipsis'};
-var rtfeldman$elm_css$Css$hidden = {p: 0, ak: 0, B: 'hidden', aR: 0};
-var rtfeldman$elm_css$Css$noWrap = {aB: 0, aW: 0, B: 'nowrap', M: 0};
+var rtfeldman$elm_css$Css$hidden = {p: 0, al: 0, B: 'hidden', aS: 0};
+var rtfeldman$elm_css$Css$noWrap = {aC: 0, aX: 0, B: 'nowrap', M: 0};
 var rtfeldman$elm_css$Css$overflow = rtfeldman$elm_css$Css$prop1('overflow');
 var rtfeldman$elm_css$Css$PercentageUnits = 0;
 var rtfeldman$elm_css$Css$pct = A2(rtfeldman$elm_css$Css$Internal$lengthConverter, 0, '%');
@@ -10047,7 +10016,7 @@ var rtfeldman$elm_css$Css$backgroundSize = rtfeldman$elm_css$Css$prop1('backgrou
 var rtfeldman$elm_css$Css$borderStyle = rtfeldman$elm_css$Css$prop1('border-style');
 var rtfeldman$elm_css$Css$cover = {H: 0, B: 'cover'};
 var rtfeldman$elm_css$Css$flexShrink = rtfeldman$elm_css$Css$prop1('flex-shrink');
-var rtfeldman$elm_css$Css$solid = {p: 0, V: 0, B: 'solid'};
+var rtfeldman$elm_css$Css$solid = {p: 0, W: 0, B: 'solid'};
 var author$project$Elements$Avatar$avatar = A2(
 	rtfeldman$elm_css$Html$Styled$styled,
 	rtfeldman$elm_css$Html$Styled$div,
@@ -10114,7 +10083,7 @@ var rtfeldman$elm_css$Css$borderColor = function (c) {
 	return A2(rtfeldman$elm_css$Css$property, 'border-color', c.B);
 };
 var rtfeldman$elm_css$Css$url = function (urlValue) {
-	return {Y: 0, B: 'url(' + (urlValue + ')')};
+	return {Z: 0, B: 'url(' + (urlValue + ')')};
 };
 var rtfeldman$elm_css$Html$Styled$Attributes$css = rtfeldman$elm_css$Html$Styled$Internal$css;
 var author$project$Views$Avatar$view = F3(
@@ -10217,7 +10186,7 @@ var author$project$Pages$LegislatorIndex$viewCards = F2(
 					A2(krisajenkins$remotedata$RemoteData$withDefault, _List_Nil, index))));
 	});
 var rtfeldman$elm_css$Css$flexWrap = rtfeldman$elm_css$Css$prop1('flex-wrap');
-var rtfeldman$elm_css$Css$wrap = {aB: 0, aW: 0, B: 'wrap'};
+var rtfeldman$elm_css$Css$wrap = {aC: 0, aX: 0, B: 'wrap'};
 var author$project$Elements$LegislatorIndex$letterList = A2(
 	rtfeldman$elm_css$Html$Styled$styled,
 	author$project$Elements$ul,
@@ -10452,7 +10421,7 @@ var author$project$App$viewPage = F2(
 				return author$project$Pages$Legislator$view(model);
 		}
 	});
-var rtfeldman$elm_css$Css$auto = {cz: 0, a: 0, ac: 0, aY: 0, c1: 0, ah: 0, H: 0, z: 0, ak: 0, v: 0, a9: 0, as: 0, t: 0, B: 'auto'};
+var rtfeldman$elm_css$Css$auto = {cz: 0, a: 0, ad: 0, aZ: 0, c1: 0, ai: 0, H: 0, z: 0, al: 0, v: 0, a9: 0, at: 0, t: 0, B: 'auto'};
 var rtfeldman$elm_css$Css$margin2 = rtfeldman$elm_css$Css$prop2('margin');
 var author$project$Elements$centeredContent = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
@@ -10511,7 +10480,7 @@ var author$project$Styles$systemFonts = rtfeldman$elm_css$Css$fontFamilies(
 			rtfeldman$elm_css$Css$qt('Segoe UI Emoji'),
 			rtfeldman$elm_css$Css$qt('Segoe UI Symbol')
 		]));
-var rtfeldman$elm_css$Css$borderBox = {bd: 0, aT: 0, B: 'border-box'};
+var rtfeldman$elm_css$Css$borderBox = {bd: 0, aU: 0, B: 'border-box'};
 var rtfeldman$elm_css$Css$boxSizing = rtfeldman$elm_css$Css$prop1('box-sizing');
 var rtfeldman$elm_css$Css$minHeight = rtfeldman$elm_css$Css$prop1('min-height');
 var rtfeldman$elm_css$Css$VhUnits = 0;
@@ -10573,19 +10542,19 @@ var author$project$Styles$styles = rtfeldman$elm_css$Css$Global$global(
 var rtfeldman$elm_css$Css$int = function (val) {
 	return {
 		G: 0,
-		aY: 0,
+		aZ: 0,
 		Q: 0,
 		z: 0,
 		dh: 0,
-		a$: 0,
+		a0: 0,
 		J: val,
-		au: '',
-		aQ: 0,
+		av: '',
+		aR: 0,
 		B: elm$core$String$fromInt(val)
 	};
 };
 var rtfeldman$elm_css$Css$position = rtfeldman$elm_css$Css$prop1('position');
-var rtfeldman$elm_css$Css$relative = {aH: 0, B: 'relative'};
+var rtfeldman$elm_css$Css$relative = {aI: 0, B: 'relative'};
 var rtfeldman$elm_css$Css$zIndex = rtfeldman$elm_css$Css$prop1('z-index');
 var author$project$Elements$Toolbar$searchContainer = A2(
 	rtfeldman$elm_css$Html$Styled$styled,
@@ -10635,7 +10604,7 @@ var author$project$Elements$Toolbar$searchInput = A2(
 		]));
 var author$project$Elements$Toolbar$toolbarAccentHeight = rtfeldman$elm_css$Css$px(4);
 var author$project$Util$Css$contentEmpty = A2(rtfeldman$elm_css$Css$property, 'content', '\'\'');
-var rtfeldman$elm_css$Css$absolute = {aH: 0, B: 'absolute'};
+var rtfeldman$elm_css$Css$absolute = {aI: 0, B: 'absolute'};
 var rtfeldman$elm_css$Css$Preprocess$WithPseudoElement = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
@@ -10682,7 +10651,7 @@ var rtfeldman$elm_css$Css$collectStops = elm$core$List$map(
 var rtfeldman$elm_css$Css$linearGradient2 = F4(
 	function (direction, firstStop, secondStop, otherStops) {
 		return {
-			Y: 0,
+			Z: 0,
 			b: 0,
 			B: A2(
 				rtfeldman$elm_css$Css$cssFunction,
@@ -10781,7 +10750,7 @@ var author$project$Views$Toolbar$GoToSelection = {$: 5};
 var author$project$Views$Toolbar$Up = 0;
 var author$project$Views$Toolbar$filterKeypress = function (code) {
 	var preventDefaultWith = function (msg) {
-		return {b1: msg, b8: true, cn: true};
+		return {b1: msg, b9: true, cn: true};
 	};
 	switch (code) {
 		case 13:
@@ -10793,7 +10762,7 @@ var author$project$Views$Toolbar$filterKeypress = function (code) {
 			return preventDefaultWith(
 				author$project$Views$Toolbar$ChangeSelection(0));
 		default:
-			return {b1: author$project$Views$Toolbar$Noop, b8: false, cn: false};
+			return {b1: author$project$Views$Toolbar$Noop, b9: false, cn: false};
 	}
 };
 var author$project$Elements$Toolbar$brand = A2(
@@ -10974,7 +10943,7 @@ var author$project$Elements$Toolbar$searchItem = A2(
 					rtfeldman$elm_css$Css$marginBottom(rtfeldman$elm_css$Css$zero)
 				]))
 		]));
-var rtfeldman$elm_css$Css$initial = {bA: 0, k: 0, az: 0, bC: 0, Y: 0, bD: 0, Z: 0, D: 0, p: 0, aT: 0, y: 0, a: 0, g: 0, ac: 0, bi: 0, aB: 0, aW: 0, N: 0, m: 0, ad: 0, d: 0, G: 0, aY: 0, bZ: 0, bk: 0, aD: 0, ah: 0, H: 0, ai: 0, aj: 0, P: 0, Q: 0, z: 0, aZ: 0, c: 0, b: 0, bo: 0, dh: 0, J: 0, a1: 0, ak: 0, v: 0, a9: 0, aq: 0, V: 0, ar: 0, as: 0, W: 0, t: 0, au: '', aQ: 0, B: 'initial', aR: 0, M: 0};
+var rtfeldman$elm_css$Css$initial = {bA: 0, k: 0, aA: 0, bC: 0, Z: 0, bD: 0, _: 0, D: 0, p: 0, aU: 0, y: 0, a: 0, g: 0, ad: 0, bi: 0, aC: 0, aX: 0, N: 0, m: 0, ae: 0, d: 0, G: 0, aZ: 0, bZ: 0, bk: 0, aE: 0, ai: 0, H: 0, aj: 0, ak: 0, P: 0, Q: 0, z: 0, a_: 0, c: 0, b: 0, bo: 0, dh: 0, J: 0, a2: 0, al: 0, v: 0, a9: 0, ar: 0, W: 0, as: 0, at: 0, X: 0, t: 0, av: '', aR: 0, B: 'initial', aS: 0, M: 0};
 var rtfeldman$elm_css$Css$inherit = _Utils_update(
 	rtfeldman$elm_css$Css$initial,
 	{B: 'inherit'});
@@ -11226,8 +11195,8 @@ var author$project$Views$Toolbar$viewItem = F4(
 				]));
 	});
 var author$project$Views$Toolbar$viewResults = function (_n0) {
-	var searchResults = _n0.an;
-	var query = _n0.cc;
+	var searchResults = _n0.ao;
+	var query = _n0.T;
 	var selectedIndex = _n0.K;
 	return A2(
 		author$project$Elements$Toolbar$searchResults,
@@ -11328,8 +11297,8 @@ var rtfeldman$elm_css$Html$Styled$Events$onInput = function (tagger) {
 };
 var author$project$Views$Toolbar$view = F2(
 	function (store, model) {
-		var query = model.cc;
-		var show = model.U;
+		var query = model.T;
+		var show = model.V;
 		return A2(
 			author$project$Elements$Toolbar$toolbar,
 			_List_Nil,
@@ -11967,13 +11936,13 @@ var author$project$App$view = function (model) {
 			A2(
 			rtfeldman$elm_css$Html$Styled$map,
 			author$project$App$ToolbarMsg,
-			A2(author$project$Views$Toolbar$view, model.w, model.at)),
+			A2(author$project$Views$Toolbar$view, model.w, model.au)),
 			A2(
 			author$project$Elements$main_,
 			_List_Nil,
 			_List_fromArray(
 				[
-					A2(author$project$App$viewPage, model.w, model.a3)
+					A2(author$project$App$viewPage, model.w, model.a4)
 				]))
 		]);
 	return {
@@ -11982,7 +11951,54 @@ var author$project$App$view = function (model) {
 	};
 };
 var elm$browser$Browser$application = _Browser_application;
-var author$project$Main$main = elm$browser$Browser$application(
+var mthadley$elm_hash_routing$Browser$Hash$Internal$fixPathQuery = function (url) {
+	var _n0 = function () {
+		var _n1 = A2(elm$core$String$split, '?', url.b6);
+		if (_n1.b && _n1.b.b) {
+			var path = _n1.a;
+			var _n2 = _n1.b;
+			var query = _n2.a;
+			return _Utils_Tuple2(
+				path,
+				elm$core$Maybe$Just(query));
+		} else {
+			return _Utils_Tuple2(url.b6, url.T);
+		}
+	}();
+	var newPath = _n0.a;
+	var newQuery = _n0.b;
+	return _Utils_update(
+		url,
+		{b6: newPath, T: newQuery});
+};
+var mthadley$elm_hash_routing$Browser$Hash$Internal$pathFromFragment = function (url) {
+	return _Utils_update(
+		url,
+		{
+			bR: elm$core$Maybe$Nothing,
+			b6: A2(elm$core$Maybe$withDefault, '', url.bR)
+		});
+};
+var mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl = A2(elm$core$Basics$composeL, mthadley$elm_hash_routing$Browser$Hash$Internal$fixPathQuery, mthadley$elm_hash_routing$Browser$Hash$Internal$pathFromFragment);
+var mthadley$elm_hash_routing$Browser$Hash$application = function (config) {
+	return elm$browser$Browser$application(
+		{
+			c0: F3(
+				function (flags, url, key) {
+					return A3(
+						config.c0,
+						flags,
+						mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl(url),
+						key);
+				}),
+			di: A2(elm$core$Basics$composeL, config.di, mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl),
+			dj: config.dj,
+			dz: config.dz,
+			dD: config.dD,
+			dG: config.dG
+		});
+};
+var author$project$Main$main = mthadley$elm_hash_routing$Browser$Hash$application(
 	{
 		c0: author$project$App$init,
 		di: A2(elm$core$Basics$composeL, author$project$App$RouteChange, author$project$Router$parse),
