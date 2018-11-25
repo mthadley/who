@@ -39,9 +39,6 @@ charParam name =
 parse : Url -> Route
 parse raw =
     let
-        _ =
-            Debug.log "raw" raw
-
         {- We are using hash routing on Github pages, so we need to turn
            the fragment into a valid URL, and then parse that instead.
 
