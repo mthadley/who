@@ -32,12 +32,16 @@ parseRoute =
 
 charParam : String -> QueryParser.Parser (Maybe Char)
 charParam name =
-    QueryParser.map (Maybe.andThen firstChar) <| QueryParser.string name
+    QueryParser.string name
+        |> QueryParser.map (Maybe.andThen firstChar)
 
 
 parse : Url -> Route
 parse raw =
     let
+        _ =
+            Debug.log "raw" raw
+
         {- We are using hash routing on Github pages, so we need to turn
            the fragment into a valid URL, and then parse that instead.
 
@@ -50,8 +54,23 @@ parse raw =
             }
     in
     url
+        |> fixPathQuery
         |> UrlParser.parse parseRoute
         |> Maybe.withDefault NotFound
+
+
+fixPathQuery : Url -> Url
+fixPathQuery url =
+    let
+        ( newPath, newQuery ) =
+            case String.split "?" url.path of
+                path :: query :: [] ->
+                    ( path, Just query )
+
+                _ ->
+                    ( url.path, url.query )
+    in
+    { url | path = newPath, query = newQuery }
 
 
 reverse : Route -> String
